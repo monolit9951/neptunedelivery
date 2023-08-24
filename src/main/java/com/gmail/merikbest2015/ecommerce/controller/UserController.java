@@ -5,12 +5,12 @@ import com.gmail.merikbest2015.ecommerce.dto.perfume.PerfumeResponse;
 import com.gmail.merikbest2015.ecommerce.dto.user.UpdateUserRequest;
 import com.gmail.merikbest2015.ecommerce.dto.user.UserResponse;
 import com.gmail.merikbest2015.ecommerce.mapper.UserMapper;
-import com.gmail.merikbest2015.ecommerce.security.UserPrincipal;
+//import com.gmail.merikbest2015.ecommerce.security.UserPrincipal;
 import com.gmail.merikbest2015.ecommerce.service.graphql.GraphQLProvider;
 import graphql.ExecutionResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,16 +28,16 @@ public class UserController {
     private final GraphQLProvider graphQLProvider;
 
     @GetMapping
-    public ResponseEntity<UserResponse> getUserInfo(@AuthenticationPrincipal UserPrincipal user) {
-        return ResponseEntity.ok(userMapper.getUserInfo(user.getEmail()));
-    }
-
-    @PutMapping
-    public ResponseEntity<UserResponse> updateUserInfo(@AuthenticationPrincipal UserPrincipal user,
-                                                       @Valid @RequestBody UpdateUserRequest request,
-                                                       BindingResult bindingResult) {
-        return ResponseEntity.ok(userMapper.updateUserInfo(user.getEmail(), request, bindingResult));
-    }
+//    public ResponseEntity<UserResponse> getUserInfo(@AuthenticationPrincipal UserPrincipal user) {
+//        return ResponseEntity.ok(userMapper.getUserInfo(user.getEmail()));
+//    }
+//
+//    @PutMapping
+//    public ResponseEntity<UserResponse> updateUserInfo(@AuthenticationPrincipal UserPrincipal user,
+//                                                       @Valid @RequestBody UpdateUserRequest request,
+//                                                       BindingResult bindingResult) {
+//        return ResponseEntity.ok(userMapper.updateUserInfo(user.getEmail(), request, bindingResult));
+//    }
 
     @PostMapping(CART)
     public ResponseEntity<List<PerfumeResponse>> getCart(@RequestBody List<Long> perfumesIds) {
