@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>ecommerce</name>
     <description>Ecommerce</description>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -75,6 +76,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--flywaydb-->
@@ -206,6 +209,7 @@
     </dependencies>
 
     <build>
+        <finalName>sushi-app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

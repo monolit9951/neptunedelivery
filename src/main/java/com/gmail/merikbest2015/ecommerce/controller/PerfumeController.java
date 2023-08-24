@@ -24,7 +24,7 @@ import static com.gmail.merikbest2015.ecommerce.constants.PathConstants.*;
 public class PerfumeController {
 
     private final PerfumeMapper perfumeMapper;
-    private final GraphQLProvider graphQLProvider;
+//    private final GraphQLProvider graphQLProvider;
 
     @GetMapping
     public ResponseEntity<List<PerfumeResponse>> getAllPerfumes(@PageableDefault(size = 15) Pageable pageable) {
@@ -66,18 +66,18 @@ public class PerfumeController {
         return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
     }
 
-    @PostMapping(GRAPHQL_IDS)
-    public ResponseEntity<ExecutionResult> getPerfumesByIdsQuery(@RequestBody GraphQLRequest request) {
-        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
-    }
-
-    @PostMapping(GRAPHQL_PERFUMES)
-    public ResponseEntity<ExecutionResult> getAllPerfumesByQuery(@RequestBody GraphQLRequest request) {
-        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
-    }
-
-    @PostMapping(GRAPHQL_PERFUME)
-    public ResponseEntity<ExecutionResult> getPerfumeByQuery(@RequestBody GraphQLRequest request) {
-        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
-    }
+//    @PostMapping(GRAPHQL_IDS)
+//    public ResponseEntity<ExecutionResult> getPerfumesByIdsQuery(@RequestBody GraphQLRequest request) {
+//        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
+//    }
+//
+//    @PostMapping(GRAPHQL_PERFUMES)
+//    public ResponseEntity<ExecutionResult> getAllPerfumesByQuery(@RequestBody GraphQLRequest request) {
+//        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
+//    }
+//
+//    @PostMapping(GRAPHQL_PERFUME)
+//    public ResponseEntity<ExecutionResult> getPerfumeByQuery(@RequestBody GraphQLRequest request) {
+//        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
+//    }
 }

@@ -25,9 +25,9 @@ import static com.gmail.merikbest2015.ecommerce.constants.PathConstants.*;
 public class UserController {
 
     private final UserMapper userMapper;
-    private final GraphQLProvider graphQLProvider;
+//    private final GraphQLProvider graphQLProvider;
 
-    @GetMapping
+//    @GetMapping
 //    public ResponseEntity<UserResponse> getUserInfo(@AuthenticationPrincipal UserPrincipal user) {
 //        return ResponseEntity.ok(userMapper.getUserInfo(user.getEmail()));
 //    }
@@ -44,8 +44,8 @@ public class UserController {
         return ResponseEntity.ok(userMapper.getCart(perfumesIds));
     }
 
-    @PostMapping(GRAPHQL)
-    public ResponseEntity<ExecutionResult> getUserInfoByQuery(@RequestBody GraphQLRequest request) {
-        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
-    }
+//    @PostMapping(GRAPHQL)
+//    public ResponseEntity<ExecutionResult> getUserInfoByQuery(@RequestBody GraphQLRequest request) {
+//        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
+//    }
 }

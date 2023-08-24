@@ -1,6 +1,12 @@
 [![Build Status](https://travis-ci.com/merikbest/ecommerce-spring-reactjs.svg?branch=travis-ci-test)](https://travis-ci.com/merikbest/ecommerce-spring-reactjs)
 [![codecov](https://codecov.io/gh/merikbest/ecommerce-spring-reactjs/branch/travis-ci-test/graph/badge.svg?token=sEfOfpBHDX)](https://codecov.io/gh/merikbest/ecommerce-spring-reactjs)
 
+## Docker > Easy Building and Running the Application
+1. Make sure you have Docker installed.
+2. Run `./build.sh` to build the application and Docker image.
+3. Run `./docker-compose.sh` to start the application and database containers.
+4. Access the application at http://localhost:8080.
+
 # :hibiscus: Perfume webstore
 
 E-commerce project developed using Spring Boot and React.js.<br>
