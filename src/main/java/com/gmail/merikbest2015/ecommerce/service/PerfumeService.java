@@ -27,7 +27,7 @@ public interface PerfumeService {
     
     Page<PerfumeProjection> findByInputText(SearchPerfume searchType, String text, Pageable pageable);
 
-    Perfume savePerfume(Perfume perfume, MultipartFile file);
+//    Perfume savePerfume(Perfume perfume, MultipartFile file);
 
     String deletePerfume(Long perfumeId);
 

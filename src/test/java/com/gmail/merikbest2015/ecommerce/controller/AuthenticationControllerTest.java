@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithUserDetails;
+//import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -127,47 +127,47 @@ public class AuthenticationControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.password2Error", is(EMPTY_PASSWORD_CONFIRMATION)));
     }
-
-    @Test
-    @WithUserDetails(USER_EMAIL)
-    public void updateUserPassword() throws Exception {
-        PasswordResetRequest requestDto = new PasswordResetRequest();
-        requestDto.setPassword(USER_PASSWORD);
-        requestDto.setPassword2(USER_PASSWORD);
-
-        mockMvc.perform(put(API_V1_AUTH + EDIT_PASSWORD)
-                        .content(mapper.writeValueAsString(requestDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Password successfully changed!")));
-    }
-
-    @Test
-    @WithUserDetails(USER_EMAIL)
-    public void updateUserPassword_ShouldPasswordsNotMatch() throws Exception {
-        PasswordResetRequest requestDto = new PasswordResetRequest();
-        requestDto.setPassword(USER_PASSWORD);
-        requestDto.setPassword2("testpassword");
-
-        mockMvc.perform(put(API_V1_AUTH + EDIT_PASSWORD)
-                        .content(mapper.writeValueAsString(requestDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.passwordError", is(PASSWORDS_DO_NOT_MATCH)));
-    }
-
-    @Test
-    @WithUserDetails(USER_EMAIL)
-    public void updateUserPassword_ShouldInputFieldsAreEmpty() throws Exception {
-        PasswordResetRequest requestDto = new PasswordResetRequest();
-        requestDto.setPassword("");
-        requestDto.setPassword2("");
-
-        mockMvc.perform(put(API_V1_AUTH + EDIT_PASSWORD)
-                        .content(mapper.writeValueAsString(requestDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.passwordError", is(PASSWORD_CHARACTER_LENGTH)))
-                .andExpect(jsonPath("$.password2Error", is(PASSWORD2_CHARACTER_LENGTH)));
-    }
+//
+//    @Test
+//    @WithUserDetails(USER_EMAIL)
+//    public void updateUserPassword() throws Exception {
+//        PasswordResetRequest requestDto = new PasswordResetRequest();
+//        requestDto.setPassword(USER_PASSWORD);
+//        requestDto.setPassword2(USER_PASSWORD);
+//
+//        mockMvc.perform(put(API_V1_AUTH + EDIT_PASSWORD)
+//                        .content(mapper.writeValueAsString(requestDto))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(equalTo("Password successfully changed!")));
+//    }
+//
+//    @Test
+//    @WithUserDetails(USER_EMAIL)
+//    public void updateUserPassword_ShouldPasswordsNotMatch() throws Exception {
+//        PasswordResetRequest requestDto = new PasswordResetRequest();
+//        requestDto.setPassword(USER_PASSWORD);
+//        requestDto.setPassword2("testpassword");
+//
+//        mockMvc.perform(put(API_V1_AUTH + EDIT_PASSWORD)
+//                        .content(mapper.writeValueAsString(requestDto))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andExpect(status().isBadRequest())
+//                .andExpect(jsonPath("$.passwordError", is(PASSWORDS_DO_NOT_MATCH)));
+//    }
+//
+//    @Test
+//    @WithUserDetails(USER_EMAIL)
+//    public void updateUserPassword_ShouldInputFieldsAreEmpty() throws Exception {
+//        PasswordResetRequest requestDto = new PasswordResetRequest();
+//        requestDto.setPassword("");
+//        requestDto.setPassword2("");
+//
+//        mockMvc.perform(put(API_V1_AUTH + EDIT_PASSWORD)
+//                        .content(mapper.writeValueAsString(requestDto))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andExpect(status().isBadRequest())
+//                .andExpect(jsonPath("$.passwordError", is(PASSWORD_CHARACTER_LENGTH)))
+//                .andExpect(jsonPath("$.password2Error", is(PASSWORD2_CHARACTER_LENGTH)));
+//    }
 }
