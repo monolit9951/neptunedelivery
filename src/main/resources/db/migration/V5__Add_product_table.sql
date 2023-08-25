@@ -1,4 +1,4 @@
-create sequence product_id_seq start 10 increment 1;
+create sequence product_id_seq start 21 increment 1;
 
 CREATE TABLE product (
     id                     int8 not null,
