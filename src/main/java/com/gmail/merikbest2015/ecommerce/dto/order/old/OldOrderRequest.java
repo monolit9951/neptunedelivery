@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.dto.order;
+package com.gmail.merikbest2015.ecommerce.dto.order.old;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.Map;
 import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.*;
 
 @Data
-public class OrderRequest {
+public class OldOrderRequest {
 
     private Double totalPrice;
     private Map<Long, Long> perfumesId;

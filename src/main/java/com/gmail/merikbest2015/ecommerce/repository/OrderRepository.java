@@ -12,11 +12,11 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    List<Order> findAllByOrderByIdAsc();
-
-    Page<Order> findAllByOrderByIdAsc(Pageable pageable);
-
-    List<Order> findOrderByEmail(String email);
-
-    Page<Order> findOrderByEmail(String email, Pageable pageable);
+//    List<Order> findAllByOrderByIdAsc();
+//
+//    Page<Order> findAllByOrderByIdAsc(Pageable pageable);
+//
+//    List<Order> findOrderByEmail(String email);
+//
+//    Page<Order> findOrderByEmail(String email, Pageable pageable);
 }

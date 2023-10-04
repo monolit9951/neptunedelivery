@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.dto.order;
+package com.gmail.merikbest2015.ecommerce.dto.order.old;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class OrderResponse {
+public class OldOrderResponse {
     private Long id;
     private Double totalPrice;
     private LocalDate date;
