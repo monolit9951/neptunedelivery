@@ -1,8 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gmail.merikbest2015.ecommerce.dto.GraphQLRequest;
-import com.gmail.merikbest2015.ecommerce.dto.order.OrderRequest;
+import com.gmail.merikbest2015.ecommerce.dto.order.old.OldOrderRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = {"/sql/create-orders-after.sql", "/sql/create-perfumes-after.sql", "/sql/create-user-after.sql"},
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class OrderControllerTest {
+public class OldOrderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -103,19 +102,19 @@ public class OrderControllerTest {
         perfumesId.put(2L, 1L);
         perfumesId.put(4L, 1L);
 
-        OrderRequest orderRequest = new OrderRequest();
-        orderRequest.setFirstName(FIRST_NAME);
-        orderRequest.setLastName(LAST_NAME);
-        orderRequest.setCity(CITY);
-        orderRequest.setAddress(ADDRESS);
-        orderRequest.setEmail(ORDER_EMAIL);
-        orderRequest.setPostIndex(POST_INDEX);
-        orderRequest.setPhoneNumber(PHONE_NUMBER);
-        orderRequest.setTotalPrice(TOTAL_PRICE);
-        orderRequest.setPerfumesId(perfumesId);
+        OldOrderRequest oldOrderRequest = new OldOrderRequest();
+        oldOrderRequest.setFirstName(FIRST_NAME);
+        oldOrderRequest.setLastName(LAST_NAME);
+        oldOrderRequest.setCity(CITY);
+        oldOrderRequest.setAddress(ADDRESS);
+        oldOrderRequest.setEmail(ORDER_EMAIL);
+        oldOrderRequest.setPostIndex(POST_INDEX);
+        oldOrderRequest.setPhoneNumber(PHONE_NUMBER);
+        oldOrderRequest.setTotalPrice(TOTAL_PRICE);
+        oldOrderRequest.setPerfumesId(perfumesId);
 
         mockMvc.perform(post(API_V1_ORDER)
-                        .content(mapper.writeValueAsString(orderRequest))
+                        .content(mapper.writeValueAsString( oldOrderRequest ))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value(FIRST_NAME))
@@ -130,10 +129,10 @@ public class OrderControllerTest {
 
     @Test
     public void postOrder_ShouldInputFieldsAreEmpty() throws Exception {
-        OrderRequest OrderRequest = new OrderRequest();
+        OldOrderRequest OldOrderRequest = new OldOrderRequest();
 
         mockMvc.perform(post(API_V1_ORDER)
-                        .content(mapper.writeValueAsString(OrderRequest))
+                        .content(mapper.writeValueAsString( OldOrderRequest ))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.firstNameError", is(FILL_IN_THE_INPUT_FIELD)))

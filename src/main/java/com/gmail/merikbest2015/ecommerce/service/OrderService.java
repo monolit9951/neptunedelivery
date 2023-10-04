@@ -1,7 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.service;
 
 import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.OrderItem;
+
 import graphql.schema.DataFetcher;
 
 import java.util.List;
@@ -11,20 +11,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
+//
+//    OldOrder getOrderById(Long orderId);
+//
+//    List<OldOrderItem> getOrderItemsByOrderId(Long orderId);
+//
+//    Page<OldOrder> getAllOrders(Pageable pageable);
 
-    Order getOrderById(Long orderId);
 
-    List<OrderItem> getOrderItemsByOrderId(Long orderId);
-    
-    Page<Order> getAllOrders(Pageable pageable);
+    Order postOrder( Order order );
 
-    Page<Order> getUserOrders(String email, Pageable pageable);
-
-    Order postOrder(Order validOrder, Map<Long, Long> perfumesId);
-
-    String deleteOrder(Long orderId);
-
-    DataFetcher<List<Order>> getAllOrdersByQuery();
-
-    DataFetcher<List<Order>> getUserOrdersByEmailQuery();
+//    String deleteOrder(Long orderId);
+//
+//    DataFetcher<List<OldOrder>> getAllOrdersByQuery();
 }

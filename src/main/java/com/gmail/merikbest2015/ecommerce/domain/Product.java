@@ -83,7 +83,7 @@ public class Product {
     private String descriptionUa;
 
     @Column
-    private Integer cityId;
+    private Long cityId;
 
     @Column
     private Integer size;
