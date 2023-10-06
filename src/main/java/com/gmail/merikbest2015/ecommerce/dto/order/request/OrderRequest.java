@@ -1,26 +1,17 @@
 package com.gmail.merikbest2015.ecommerce.dto.order.request;
 
-import java.time.Instant;
-import java.util.List;
+import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
+import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
+import com.gmail.merikbest2015.ecommerce.enums.StatusType;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
+import java.util.List;
 
-import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
-import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
-
-import lombok.Data;
-
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.EMAIL_CANNOT_BE_EMPTY;
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.EMPTY_PHONE_NUMBER;
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.EMPTY_POST_INDEX;
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.FILL_IN_THE_INPUT_FIELD;
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.INCORRECT_EMAIL;
+import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.*;
 
 
 @Data
@@ -57,4 +48,5 @@ public class OrderRequest {
 
     private DeliveryType deliveryType;
     private PaymentType paymentType;
+    private StatusType statusType;
 }

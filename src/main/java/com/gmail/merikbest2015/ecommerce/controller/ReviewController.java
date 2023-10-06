@@ -2,7 +2,7 @@ package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.gmail.merikbest2015.ecommerce.dto.review.ReviewRequest;
 import com.gmail.merikbest2015.ecommerce.dto.review.ReviewResponse;
-import com.gmail.merikbest2015.ecommerce.mapper.ReviewMapper;
+//import com.gmail.merikbest2015.ecommerce.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

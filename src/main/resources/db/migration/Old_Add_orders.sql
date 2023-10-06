@@ -1,4 +1,4 @@
-INSERT INTO orders (id, address, city, date, email, first_name, last_name, phone_number, post_index, total_price)
+/*INSERT INTO orders (id, address, city, date, email, first_name, last_name, phone_number, post_index, total_price)
     VALUES (1, 'Wall Street1', 'New York', '2021-04-07', 'test123@test.com', 'John', 'Doe', '1234567890', 1234567890, 840);
 INSERT INTO orders (id, address, city, date, email, first_name, last_name, phone_number, post_index, total_price)
     VALUES (2, 'Wall Street1', 'New York', '2021-04-07', 'test123@test.com', 'John', 'Doe', '1234567890', 1234567890, 240);
@@ -31,6 +31,6 @@ INSERT INTO orders_order_items (order_id, order_items_id) VALUES (3, 7);
 INSERT INTO orders_order_items (order_id, order_items_id) VALUES (4, 8);
 INSERT INTO orders_order_items (order_id, order_items_id) VALUES (4, 9);
 INSERT INTO orders_order_items (order_id, order_items_id) VALUES (5, 10);
-INSERT INTO orders_order_items (order_id, order_items_id) VALUES (5, 11);
+INSERT INTO orders_order_items (order_id, order_items_id) VALUES (5, 11);*/
 
 

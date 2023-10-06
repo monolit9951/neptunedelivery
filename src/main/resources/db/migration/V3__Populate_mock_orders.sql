@@ -1,0 +1,2 @@
+INSERT INTO orders (id, to_date, to_time, first_name, phone_number, city_id, street, house_number, house_entrance, house_floor, apartment_number, post_index, comment, people_quantity, cart_items, study_quantity, simple_quantity, delivery_type, payment_type, status_type, removal_date)
+VALUES (1, '2023-10-04T14:30:00Z', '2023-10-05T14:30:00Z', 'Bohdan', '+48881607926', 1, 'Traugutta', '115B', 'through the main entrance', '10', '1005B1', 80226, 'none', 2, '[{"id": 1, "quantity": 2}]', 2, 1, 'DELIVERY', 'CASH', 'COMPLETED', null);

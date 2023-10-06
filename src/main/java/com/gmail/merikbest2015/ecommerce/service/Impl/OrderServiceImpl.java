@@ -1,26 +1,17 @@
 package com.gmail.merikbest2015.ecommerce.service.Impl;
 
 import com.gmail.merikbest2015.ecommerce.domain.Order;
-//import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
+import com.gmail.merikbest2015.ecommerce.enums.StatusType;
 import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
+import com.gmail.merikbest2015.ecommerce.repository.projection.OrderProjection;
 import com.gmail.merikbest2015.ecommerce.service.OrderService;
-import com.gmail.merikbest2015.ecommerce.service.email.MailSender;
-
-import graphql.schema.DataFetcher;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.ORDER_NOT_FOUND;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 //    private final OrderItemRepository orderItemRepository;
-    private final MailSender mailSender;
+//    private final MailSender mailSender;
 
 //    @Override
 //    public OldOrder getOrderById(Long orderId) {
@@ -42,10 +33,10 @@ public class OrderServiceImpl implements OrderService {
 //        return oldOrder.getOldOrderItems();
 //    }
 //
-//    @Override
-//    public Page<OldOrder> getAllOrders(Pageable pageable) {
-//        return orderRepository.findAllByOrderByIdAsc(pageable);
-//    }
+    @Override
+    public Page<OrderProjection> getAllOrders(Pageable pageable) {
+        return orderRepository.findAllByOrderByIdAsc(pageable);
+    }
 
 
     @Override
@@ -54,6 +45,19 @@ public class OrderServiceImpl implements OrderService {
         //order.setS
         Order savedOrder = orderRepository.save( order );
         return savedOrder;
+    }
+
+    @Override
+    public void updateOrderStatus(Long statusId, StatusType statusType) {
+        Optional<Order> optionalOrder = orderRepository.findById(statusId);
+
+        if(optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setStatusType(statusType);
+            orderRepository.save(order);
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
 

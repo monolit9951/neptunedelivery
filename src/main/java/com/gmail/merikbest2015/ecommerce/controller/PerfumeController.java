@@ -1,16 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.controller;
 
-import java.util.List;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import com.gmail.merikbest2015.ecommerce.dto.GraphQLRequest;
-import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
-import com.gmail.merikbest2015.ecommerce.dto.perfume.*;
-import com.gmail.merikbest2015.ecommerce.mapper.PerfumeMapper;
+//import com.gmail.merikbest2015.ecommerce.mapper.PerfumeMapper;
 //import com.gmail.merikbest2015.ecommerce.service.graphql.GraphQLProvider;
 //
 //import graphql.ExecutionResult;

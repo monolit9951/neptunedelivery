@@ -1,6 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.mapper;
 
-import com.gmail.merikbest2015.ecommerce.domain.old.OldOrder;
+//import com.gmail.merikbest2015.ecommerce.domain.old.OldOrder;
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.order.old.OldOrderItemResponse;
 import com.gmail.merikbest2015.ecommerce.dto.order.old.OldOrderRequest;

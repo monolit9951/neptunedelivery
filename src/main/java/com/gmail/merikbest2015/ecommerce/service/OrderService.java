@@ -1,12 +1,8 @@
 package com.gmail.merikbest2015.ecommerce.service;
 
 import com.gmail.merikbest2015.ecommerce.domain.Order;
-
-import graphql.schema.DataFetcher;
-
-import java.util.List;
-import java.util.Map;
-
+import com.gmail.merikbest2015.ecommerce.enums.StatusType;
+import com.gmail.merikbest2015.ecommerce.repository.projection.OrderProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,10 +12,12 @@ public interface OrderService {
 //
 //    List<OldOrderItem> getOrderItemsByOrderId(Long orderId);
 //
-//    Page<OldOrder> getAllOrders(Pageable pageable);
+    Page<OrderProjection> getAllOrders(Pageable pageable);
 
 
     Order postOrder( Order order );
+
+    void updateOrderStatus(Long statusId, StatusType statusType);
 
 //    String deleteOrder(Long orderId);
 //

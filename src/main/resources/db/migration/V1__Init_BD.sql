@@ -1,6 +1,6 @@
 create
-sequence product_id_seq start
-21 increment 1;
+    sequence product_id_seq start
+    21 increment 1;
 
 CREATE TABLE product
 (
@@ -23,7 +23,7 @@ CREATE TABLE product
     city_id        int8,
     size           int4,
     sale           int4,
-    iiko_id uuid,
+    iiko_id        uuid,
     cart_count     int4,
     sort           int4,
     box            int4,
@@ -53,6 +53,7 @@ CREATE TABLE orders
     simple_quantity  int4,
     delivery_type    varchar(255),
     payment_type     varchar(255),
+    status_type      varchar(255),
     removal_date     TIMESTAMP WITHOUT TIME ZONE,
     primary key (id)
 );

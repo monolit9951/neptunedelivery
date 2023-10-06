@@ -2,8 +2,8 @@ package com.gmail.merikbest2015.ecommerce.service.Impl;
 
 import com.gmail.merikbest2015.ecommerce.enums.AuthProvider;
 import com.gmail.merikbest2015.ecommerce.enums.Role;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
+//import com.gmail.merikbest2015.ecommerce.domain.User;
+//import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
 //import com.gmail.merikbest2015.ecommerce.security.JwtProvider;
 import com.gmail.merikbest2015.ecommerce.security.oauth2.*;
 import com.gmail.merikbest2015.ecommerce.service.email.MailSender;
@@ -40,8 +40,8 @@ public class AuthenticationServiceImplTest {
 //    @MockBean
 //    private AuthenticationManager authenticationManager;
 
-    @MockBean
-    private UserRepository userRepository;
+//    @MockBean
+//    private UserRepository userRepository;
 
 //    @MockBean
 ////    private JwtProvider jwtProvider;
