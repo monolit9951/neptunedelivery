@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.repository;
+package com.gmail.merikbest2015.ecommerce.repository.old;
 
 //import com.gmail.merikbest2015.ecommerce.domain.Review;
 //import org.springframework.data.jpa.repository.JpaRepository;

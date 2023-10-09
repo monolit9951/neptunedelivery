@@ -1,9 +1,9 @@
 package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
+import com.gmail.merikbest2015.ecommerce.dto.StatusTypeRequest;
 import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderRequest;
 import com.gmail.merikbest2015.ecommerce.dto.order.response.OrderResponse;
-import com.gmail.merikbest2015.ecommerce.enums.StatusType;
 import com.gmail.merikbest2015.ecommerce.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -48,15 +48,14 @@ public class OrderController {
 
 
     @PostMapping
-    public ResponseEntity<OrderResponse> postOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
-        return ResponseEntity.ok(orderMapper.postOrder(order, bindingResult));
+    public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
+        return ResponseEntity.ok(orderMapper.createOrder(order, bindingResult));
     }
 
     @PutMapping("/{orderId}")
-    public ResponseEntity<String> updateOrderStatus(@PathVariable Long orderId, @RequestBody StatusType statusType) {
-
-        orderMapper.updateOrderStatus(orderId, statusType);
-        return ResponseEntity.ok("Successful update!");
+    public ResponseEntity<OrderResponse> updateOrderStatus(@PathVariable Long orderId, @RequestBody StatusTypeRequest statusType) {
+        OrderResponse response = orderMapper.updateOrderStatus(orderId, statusType.getStatusType());
+        return ResponseEntity.ok(response);
 
     }
 

@@ -94,6 +94,7 @@ public class Order {
     @Enumerated( EnumType.STRING )
     private PaymentType paymentType;
 
+    @NotNull
     @Column
     @Enumerated( EnumType.STRING )
     private StatusType statusType;

@@ -53,7 +53,7 @@ CREATE TABLE orders
     simple_quantity  int4,
     delivery_type    varchar(255),
     payment_type     varchar(255),
-    status_type      varchar(255),
+    status_type      varchar(255) not null,
     removal_date     TIMESTAMP WITHOUT TIME ZONE,
     primary key (id)
 );

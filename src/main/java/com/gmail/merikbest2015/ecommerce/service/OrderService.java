@@ -15,9 +15,9 @@ public interface OrderService {
     Page<OrderProjection> getAllOrders(Pageable pageable);
 
 
-    Order postOrder( Order order );
+    Order createOrder(Order order );
 
-    void updateOrderStatus(Long statusId, StatusType statusType);
+    Order updateOrderStatus(Long statusId, StatusType statusType);
 
 //    String deleteOrder(Long orderId);
 //

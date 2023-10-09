@@ -2,12 +2,14 @@ package com.gmail.merikbest2015.ecommerce.service.Impl;
 
 import com.gmail.merikbest2015.ecommerce.domain.Order;
 import com.gmail.merikbest2015.ecommerce.enums.StatusType;
+import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
 import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
 import com.gmail.merikbest2015.ecommerce.repository.projection.OrderProjection;
 import com.gmail.merikbest2015.ecommerce.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 //                .orElseThrow(() -> new ApiRequestException(ORDER_NOT_FOUND, HttpStatus.NOT_FOUND));
 //    }
 
-//    @Override
+    //    @Override
 //    public List<OldOrderItem> getOrderItemsByOrderId(Long orderId) {
 //        OldOrder oldOrder = getOrderById(orderId);
 //        return oldOrder.getOldOrderItems();
@@ -38,26 +40,27 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAllByOrderByIdAsc(pageable);
     }
 
-
-    @Override
     @Transactional
-    public Order postOrder( Order order ) {
-        //order.setS
-        Order savedOrder = orderRepository.save( order );
+    @Override
+    public Order createOrder(Order order) {
+        order.setStatusType(StatusType.CREATED);
+        Order savedOrder = orderRepository.save(order);
         return savedOrder;
     }
 
+    @Transactional
     @Override
-    public void updateOrderStatus(Long statusId, StatusType statusType) {
-        Optional<Order> optionalOrder = orderRepository.findById(statusId); //нэиминг поменять
+    public Order updateOrderStatus(Long statusId, StatusType statusType) {
+        Optional<Order> orderOpt = orderRepository.findById(statusId);
 
-        if(optionalOrder.isPresent()) {
-            Order order = optionalOrder.get();
+
+        if (orderOpt.isPresent()) {
+            Order order = orderOpt.get();
             order.setStatusType(statusType);
-            orderRepository.save(order);
-        } else {
-            throw new IllegalArgumentException();
+            return orderRepository.save(order);
         }
+
+        throw new ApiRequestException("Order not found", HttpStatus.BAD_REQUEST);
     }
 
 

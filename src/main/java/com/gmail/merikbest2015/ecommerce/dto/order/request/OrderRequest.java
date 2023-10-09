@@ -48,5 +48,6 @@ public class OrderRequest {
 
     private DeliveryType deliveryType;
     private PaymentType paymentType;
+    @NotNull(message = EMPTY_ORDER_STATUS)
     private StatusType statusType;
 }

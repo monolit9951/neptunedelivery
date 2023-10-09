@@ -38,20 +38,20 @@ public class OrderMapper {
                 orders.getTotalElements(), OrderResponse.class);
     }
 
-    public void updateOrderStatus(Long orderId, StatusType statusType) {
-
-        orderService.updateOrderStatus(orderId, statusType);
+    public OrderResponse updateOrderStatus(Long orderId, StatusType statusType) {
+        Order order = orderService.updateOrderStatus(orderId, statusType);
+        return commonMapper.convertToResponse(order, OrderResponse.class);
     }
 
 //    public String deleteOrder(Long orderId) {
 //        return orderService.deleteOrder(orderId);
 //    }
 
-    public OrderResponse postOrder(OrderRequest orderRequest, BindingResult bindingResult) {
+    public OrderResponse createOrder(OrderRequest orderRequest, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new InputFieldException(bindingResult);
         }
-        Order order = orderService.postOrder(commonMapper.convertToEntity(orderRequest, Order.class));
+        Order order = orderService.createOrder(commonMapper.convertToEntity(orderRequest, Order.class));
         return commonMapper.convertToResponse(order, OrderResponse.class);
     }
 }
