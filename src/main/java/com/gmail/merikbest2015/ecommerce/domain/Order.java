@@ -33,6 +33,7 @@ public class Order {
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "order_id_seq" )
     @SequenceGenerator( name = "order_id_seq", sequenceName = "order_id_seq", initialValue = 6, allocationSize = 1 )
     @Column( name = "id" )
+
     private Long id;
 
     @Type( type = UtcInstantType.CANONICAL_NAME )

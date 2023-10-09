@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.domain;
+package com.gmail.merikbest2015.ecommerce.domain.old;
 
 import lombok.Getter;
 import lombok.Setter;

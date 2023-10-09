@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void updateOrderStatus(Long statusId, StatusType statusType) {
-        Optional<Order> optionalOrder = orderRepository.findById(statusId);
+        Optional<Order> optionalOrder = orderRepository.findById(statusId); //нэиминг поменять
 
         if(optionalOrder.isPresent()) {
             Order order = optionalOrder.get();

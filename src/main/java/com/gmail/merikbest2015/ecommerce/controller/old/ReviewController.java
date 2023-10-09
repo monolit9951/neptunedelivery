@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.controller;
+package com.gmail.merikbest2015.ecommerce.controller.old;
 
 import com.gmail.merikbest2015.ecommerce.dto.review.ReviewRequest;
 import com.gmail.merikbest2015.ecommerce.dto.review.ReviewResponse;

@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.service;
+package com.gmail.merikbest2015.ecommerce.service.old;
 
 //import com.gmail.merikbest2015.ecommerce.domain.User;
 //import com.gmail.merikbest2015.ecommerce.security.oauth2.OAuth2UserInfo;
