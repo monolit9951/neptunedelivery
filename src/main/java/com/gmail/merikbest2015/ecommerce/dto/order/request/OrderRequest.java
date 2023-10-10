@@ -2,7 +2,6 @@ package com.gmail.merikbest2015.ecommerce.dto.order.request;
 
 import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
 import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
-import com.gmail.merikbest2015.ecommerce.enums.StatusType;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
@@ -48,6 +47,4 @@ public class OrderRequest {
 
     private DeliveryType deliveryType;
     private PaymentType paymentType;
-    @NotNull(message = EMPTY_ORDER_STATUS)
-    private StatusType statusType;
 }

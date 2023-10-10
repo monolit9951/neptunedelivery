@@ -1,5 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.service.Impl;
 
+import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.domain.Order;
 import com.gmail.merikbest2015.ecommerce.enums.StatusType;
 import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
@@ -12,8 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,23 +43,19 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder(Order order) {
         order.setStatusType(StatusType.CREATED);
-        Order savedOrder = orderRepository.save(order);
-        return savedOrder;
+        return orderRepository.save(order);
     }
 
     @Transactional
     @Override
-    public Order updateOrderStatus(Long statusId, StatusType statusType) {
-        Optional<Order> orderOpt = orderRepository.findById(statusId);
+    public Order updateOrderStatus(Long orderId, StatusType statusType) {
+        Order order = orderRepository
+                .findById(orderId)
+                .orElseThrow(() -> new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST));
 
-
-        if (orderOpt.isPresent()) {
-            Order order = orderOpt.get();
             order.setStatusType(statusType);
             return orderRepository.save(order);
-        }
 
-        throw new ApiRequestException("Order not found", HttpStatus.BAD_REQUEST);
     }
 
 
