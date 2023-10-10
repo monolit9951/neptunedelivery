@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.mapper;
+package com.gmail.merikbest2015.ecommerce.mapper.old;
 //
 //import com.gmail.merikbest2015.ecommerce.domain.User;
 //import com.gmail.merikbest2015.ecommerce.dto.PasswordResetRequest;

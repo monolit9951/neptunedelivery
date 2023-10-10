@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.service.Impl;
+package com.gmail.merikbest2015.ecommerce.service.Impl.old;
 
 //import com.gmail.merikbest2015.ecommerce.domain.Perfume;
 //import com.gmail.merikbest2015.ecommerce.domain.Review;

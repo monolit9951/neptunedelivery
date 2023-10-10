@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.domain;
+package com.gmail.merikbest2015.ecommerce.domain.old;
 
 import com.gmail.merikbest2015.ecommerce.enums.AuthProvider;
 import com.gmail.merikbest2015.ecommerce.enums.Role;

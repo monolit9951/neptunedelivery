@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.controller;
+package com.gmail.merikbest2015.ecommerce.controller.old;
 
 //import com.gmail.merikbest2015.ecommerce.dto.PasswordResetRequest;
 //import com.gmail.merikbest2015.ecommerce.dto.auth.AuthenticationRequest;

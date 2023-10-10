@@ -1,11 +1,11 @@
 package com.gmail.merikbest2015.ecommerce.service.Impl;
 
-import com.gmail.merikbest2015.ecommerce.domain.old.OldOrder;
-import com.gmail.merikbest2015.ecommerce.domain.old.OldOrderItem;
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
-import com.gmail.merikbest2015.ecommerce.repository.OrderItemRepository;
-import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
-import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
+//import com.gmail.merikbest2015.ecommerce.domain.old.OldOrder;
+//import com.gmail.merikbest2015.ecommerce.domain.old.OldOrderItem;
+//import com.gmail.merikbest2015.ecommerce.domain.Perfume;
+//import com.gmail.merikbest2015.ecommerce.repository.OrderItemRepository;
+//import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
+//import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
 import com.gmail.merikbest2015.ecommerce.service.email.MailSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;

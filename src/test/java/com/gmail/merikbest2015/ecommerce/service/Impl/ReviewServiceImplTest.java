@@ -1,6 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.service.Impl;
 
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
+/*import com.gmail.merikbest2015.ecommerce.domain.Perfume;
 import com.gmail.merikbest2015.ecommerce.domain.Review;
 import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
 import com.gmail.merikbest2015.ecommerce.repository.ReviewRepository;
@@ -50,4 +50,5 @@ public class ReviewServiceImplTest {
         verify(perfumeRepository, times(1)).findById(123L);
         verify(reviewRepository, times(1)).save(review);
     }
-}
+}*/
+

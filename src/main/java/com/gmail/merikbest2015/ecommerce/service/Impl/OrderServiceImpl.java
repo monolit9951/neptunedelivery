@@ -1,26 +1,18 @@
 package com.gmail.merikbest2015.ecommerce.service.Impl;
 
+import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.domain.Order;
-//import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
+import com.gmail.merikbest2015.ecommerce.enums.StatusType;
+import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
 import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
+import com.gmail.merikbest2015.ecommerce.repository.projection.OrderProjection;
 import com.gmail.merikbest2015.ecommerce.service.OrderService;
-import com.gmail.merikbest2015.ecommerce.service.email.MailSender;
-
-import graphql.schema.DataFetcher;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.ORDER_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 //    private final OrderItemRepository orderItemRepository;
-    private final MailSender mailSender;
+//    private final MailSender mailSender;
 
 //    @Override
 //    public OldOrder getOrderById(Long orderId) {
@@ -36,24 +28,34 @@ public class OrderServiceImpl implements OrderService {
 //                .orElseThrow(() -> new ApiRequestException(ORDER_NOT_FOUND, HttpStatus.NOT_FOUND));
 //    }
 
-//    @Override
+    //    @Override
 //    public List<OldOrderItem> getOrderItemsByOrderId(Long orderId) {
 //        OldOrder oldOrder = getOrderById(orderId);
 //        return oldOrder.getOldOrderItems();
 //    }
 //
-//    @Override
-//    public Page<OldOrder> getAllOrders(Pageable pageable) {
-//        return orderRepository.findAllByOrderByIdAsc(pageable);
-//    }
-
-
     @Override
+    public Page<OrderProjection> getAllOrders(Pageable pageable) {
+        return orderRepository.findAllByOrderByIdAsc(pageable);
+    }
+
     @Transactional
-    public Order postOrder( Order order ) {
-        //order.setS
-        Order savedOrder = orderRepository.save( order );
-        return savedOrder;
+    @Override
+    public Order createOrder(Order order) {
+        order.setStatusType(StatusType.CREATED);
+        return orderRepository.save(order);
+    }
+
+    @Transactional
+    @Override
+    public Order updateOrderStatus(Long orderId, StatusType statusType) {
+        Order order = orderRepository
+                .findById(orderId)
+                .orElseThrow(() -> new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+            order.setStatusType(statusType);
+            return orderRepository.save(order);
+
     }
 
 
