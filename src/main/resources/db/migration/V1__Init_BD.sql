@@ -20,10 +20,8 @@ CREATE TABLE product
     description_ru varchar(255),
     description_en varchar(255),
     description_ua varchar(255),
-    city_id        int8,
     size           int4,
     sale           int4,
-    iiko_id        uuid,
     cart_count     int4,
     sort           int4,
     box            int4,
@@ -34,26 +32,30 @@ CREATE TABLE product
 create sequence order_id_seq start 6 increment 1;
 CREATE TABLE orders
 (
-    id               int8 not null,
-    to_date          TIMESTAMP WITHOUT TIME ZONE,
-    to_time          TIMESTAMP WITHOUT TIME ZONE,
-    first_name       varchar(255),
-    phone_number     varchar(255),
-    city_id          int8,
-    street           varchar(255),
-    house_number     varchar(255),
-    house_entrance   varchar(255),
-    house_floor      varchar(255),
-    apartment_number varchar(255),
-    post_index       int4,
-    comment          varchar(255),
-    people_quantity  int4,
-    cart_items       json,
-    study_quantity   int4,
-    simple_quantity  int4,
-    delivery_type    varchar(255),
-    payment_type     varchar(255),
-    status_type      varchar(255) not null,
-    removal_date     TIMESTAMP WITHOUT TIME ZONE,
+    id                 int8         not null,
+    to_date_time       TIMESTAMP WITHOUT TIME ZONE,
+    client_info        json,
+    delivery_address   json,
+    comment            varchar(255),
+    people_count       int4,
+    cart_items         json,
+    sticks_count       int4,
+    study_sticks_count int4,
+    delivery_type      varchar(255),
+    payment_type       varchar(255),
+    status_type        varchar(255) not null,
+    removal_date       TIMESTAMP WITHOUT TIME ZONE,
     primary key (id)
+);
+
+create sequence category_id_seq start 20 increment 1;
+CREATE TABLE category
+(
+    id         int8 not null,
+    name       varchar(255),
+    name_ua    varchar(255),
+    name_ru    varchar(255),
+    name_en    varchar(255),
+    url        varchar(255),
+    img        varchar(255)
 );

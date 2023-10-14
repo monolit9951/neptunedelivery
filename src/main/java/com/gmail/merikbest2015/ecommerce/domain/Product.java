@@ -1,25 +1,15 @@
 package com.gmail.merikbest2015.ecommerce.domain;
 
-import java.time.Instant;
-import java.util.Objects;
-import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.Where;
-
 import com.gmail.merikbest2015.ecommerce.configuration.UtcInstantType;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
+import java.time.Instant;
+import java.util.Objects;
 
 
 @Getter
@@ -83,16 +73,10 @@ public class Product {
     private String descriptionUa;
 
     @Column
-    private Long cityId;
-
-    @Column
     private Integer size;
 
     @Column
     private Integer sale;
-
-    @Column
-    private UUID iikoId;
 
     @Column
     private Integer cartCount;

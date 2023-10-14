@@ -4,9 +4,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-
 @Data
-public class OrderCartItem implements Serializable {
-    private Long id;
-    private Long quantity;
+public class DeliveryAddress implements Serializable {
+    private String clientAddress;
+
 }

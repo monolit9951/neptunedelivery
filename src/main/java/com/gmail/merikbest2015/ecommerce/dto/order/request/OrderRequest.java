@@ -4,47 +4,36 @@ import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
 import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
 import lombok.Data;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.List;
-
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.*;
 
 
 @Data
 public class OrderRequest {
-    private Instant toDate;
-    private Instant toTime;
-
-    @NotBlank(message = FILL_IN_THE_INPUT_FIELD)
-    private String firstName;
-
-    @NotBlank(message = EMPTY_PHONE_NUMBER)
-    private String phoneNumber;
+    private Instant toDateTime;
+    private ClientInfo clientInfo;
 
 //    @Email(message = INCORRECT_EMAIL)
 //    @NotBlank(message = EMAIL_CANNOT_BE_EMPTY)
 //    private String email;
-
-    private Long cityId;
-    private String street;
-    private String houseNumber;
-    private String houseEntrance;
-    private String houseFloor;
-    private String apartmentNumber;
-
-    @NotNull(message = EMPTY_POST_INDEX)
-    @Min(value = 5, message = "Post index must contain 5 digits")
-    private Integer postIndex;
-
+    private DeliveryAddress address;
     private String comment;
     private Integer peopleQuantity;
     private List<OrderCartItem> cartItems;
     private Integer studyQuantity;
     private Integer simpleQuantity;
-
     private DeliveryType deliveryType;
     private PaymentType paymentType;
 }
+
+/*{
+  products: number[] // array of products id
+  personCount: number
+  sticksCount: number
+  paymentType: 'offline' | 'card offline' | 'online'
+  deliveryAddress: string // if paymentType === offline
+  clientInfo: {
+    phoneNumber: string
+    name: string
+  }
+}*/

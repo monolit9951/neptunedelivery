@@ -1,6 +1,8 @@
 package com.gmail.merikbest2015.ecommerce.domain;
 
 import com.gmail.merikbest2015.ecommerce.configuration.UtcInstantType;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.ClientInfo;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.DeliveryAddress;
 import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderCartItem;
 import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
 import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
@@ -13,12 +15,9 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.List;
-
-import static com.gmail.merikbest2015.ecommerce.constants.ErrorMessage.EMPTY_POST_INDEX;
 
 
 @Getter
@@ -37,54 +36,31 @@ public class Order {
     private Long id;
 
     @Type( type = UtcInstantType.CANONICAL_NAME )
-    private Instant toDate;
+    private Instant toDateTime;
 
-    @Type( type = UtcInstantType.CANONICAL_NAME )
-    private Instant toTime;
+    @Type( type = "jsonb" )
+    @Column( columnDefinition = "jsonb" )
+    private ClientInfo clientInfo;
 
-    @Column
-    private String firstName;
-
-    @Column
-    private String phoneNumber;
-
-    @Column
-    private Long cityId;
-
-    @Column
-    private String street;
-
-    @Column
-    private String houseNumber;
-
-    @Column
-    private String houseEntrance;
-
-    @Column
-    private String houseFloor;
-
-    @Column
-    private String apartmentNumber;
-
-    @NotNull( message = EMPTY_POST_INDEX )
-    @Min( value = 5, message = "Post index must contain 5 digits" )
-    private Integer postIndex;
+    @Type( type = "jsonb" )
+    @Column( columnDefinition = "jsonb" )
+    private DeliveryAddress deliveryAddress;
 
     @Column
     private String comment;
 
     @Column
-    private Integer peopleQuantity;
+    private Integer peopleCount;
 
     @Type( type = "jsonb" )
     @Column( columnDefinition = "jsonb" )
     private List<OrderCartItem> cartItems;
 
     @Column
-    private Integer studyQuantity;
+    private Integer sticksCount;
 
     @Column
-    private Integer simpleQuantity;
+    private Integer studySticksCount;
 
     @Column
     @Enumerated( EnumType.STRING )

@@ -58,6 +58,29 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    @Override
+    public Order changeOrderFull(Long orderId, Order order) {
+        Order updateOrder = orderRepository
+                .findById(orderId)
+                .orElseThrow(() -> new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+        updateOrder.setToDateTime(order.getToDateTime());
+        updateOrder.setClientInfo(order.getClientInfo());
+        updateOrder.setDeliveryAddress(order.getDeliveryAddress());
+        updateOrder.setComment(order.getComment());
+        updateOrder.setPeopleCount(order.getPeopleCount());
+        updateOrder.setCartItems(order.getCartItems());
+        updateOrder.setSticksCount(order.getSticksCount());
+        updateOrder.setStudySticksCount(order.getStudySticksCount());
+        updateOrder.setDeliveryType(order.getDeliveryType());
+        updateOrder.setPaymentType(order.getPaymentType());
+        updateOrder.setStatusType(order.getStatusType());
+
+
+
+        return orderRepository.save(updateOrder);
+    }
+
 
 //    @Override
 //    public Page<OldOrder> getUserOrders(String email, Pageable pageable) {

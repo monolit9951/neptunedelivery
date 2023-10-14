@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.products.response.FullProductResponse;
-import com.gmail.merikbest2015.ecommerce.dto.products.response.ProductResponse;
 import com.gmail.merikbest2015.ecommerce.repository.projection.ProductProjection;
 import com.gmail.merikbest2015.ecommerce.service.ProductService;
 
@@ -22,10 +21,10 @@ public class ProductMapper {
     private final ProductService productService;
 
 
-    public HeaderResponse<ProductResponse> getAllProducts( Pageable pageable ) {
+    public HeaderResponse<FullProductResponse> getAllProducts( Pageable pageable ) {
         Page<ProductProjection> products = productService.getAllProducts( pageable );
         return commonMapper.getHeaderResponse( products.getContent(), products.getTotalPages(),
-                products.getTotalElements(), ProductResponse.class );
+                products.getTotalElements(), FullProductResponse.class );
     }
 
 

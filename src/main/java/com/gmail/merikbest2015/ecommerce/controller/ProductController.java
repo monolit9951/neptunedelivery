@@ -1,7 +1,9 @@
 package com.gmail.merikbest2015.ecommerce.controller;
 
-import java.util.List;
-
+import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
+import com.gmail.merikbest2015.ecommerce.dto.products.response.FullProductResponse;
+import com.gmail.merikbest2015.ecommerce.mapper.ProductMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
-import com.gmail.merikbest2015.ecommerce.dto.products.response.FullProductResponse;
-import com.gmail.merikbest2015.ecommerce.dto.products.response.ProductResponse;
-import com.gmail.merikbest2015.ecommerce.mapper.ProductMapper;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 
 @RestController
@@ -26,8 +23,8 @@ public class ProductController {
 
 
     @GetMapping
-    public ResponseEntity<List<ProductResponse>> getAllProducts( @PageableDefault( size = 15 ) Pageable pageable ) {
-        HeaderResponse<ProductResponse> response = productMapper.getAllProducts( pageable );
+    public ResponseEntity<List<FullProductResponse>> getAllProducts( @PageableDefault( size = 15 ) Pageable pageable ) {
+        HeaderResponse<FullProductResponse> response = productMapper.getAllProducts( pageable );
         return ResponseEntity.ok().headers( response.getHeaders() ).body( response.getItems() );
     }
 

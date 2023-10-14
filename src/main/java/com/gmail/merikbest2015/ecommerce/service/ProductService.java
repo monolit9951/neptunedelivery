@@ -11,6 +11,5 @@ import com.gmail.merikbest2015.ecommerce.repository.projection.ProductProjection
 public interface ProductService {
     Page<ProductProjection> getAllProducts( Pageable pageable );
 
-
     Product getProductById( Long perfumeId );
 }

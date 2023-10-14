@@ -19,6 +19,9 @@ public interface OrderService {
 
     Order updateOrderStatus(Long statusId, StatusType statusType);
 
+    Order changeOrderFull(Long orderId, Order order);
+
+
 //    String deleteOrder(Long orderId);
 //
 //    DataFetcher<List<OldOrder>> getAllOrdersByQuery();

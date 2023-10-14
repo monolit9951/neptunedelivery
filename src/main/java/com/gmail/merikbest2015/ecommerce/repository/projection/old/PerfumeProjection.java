@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.repository.projection;
+package com.gmail.merikbest2015.ecommerce.repository.projection.old;
 
 import org.springframework.beans.factory.annotation.Value;
 
