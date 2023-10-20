@@ -1,7 +1,4 @@
-create
-    sequence product_id_seq start
-    21 increment 1;
-
+create sequence product_id_seq start 21 increment 1;
 CREATE TABLE product
 (
     id             int8 not null,
@@ -10,7 +7,7 @@ CREATE TABLE product
     name_en        varchar(255),
     name_ua        varchar(255),
     price          int4,
-    category_id    int4,
+    category_id    int8,
     allergens_id   int4,
     weight         float8,
     url            varchar(255),
@@ -51,11 +48,18 @@ CREATE TABLE orders
 create sequence category_id_seq start 20 increment 1;
 CREATE TABLE category
 (
-    id         int8 not null,
-    name       varchar(255),
-    name_ua    varchar(255),
-    name_ru    varchar(255),
-    name_en    varchar(255),
-    url        varchar(255),
-    img        varchar(255)
+    id           int8 not null,
+    name         varchar(255),
+    name_ua      varchar(255),
+    name_ru      varchar(255),
+    name_en      varchar(255),
+    url          varchar(255),
+    img          varchar(255),
+    removal_date TIMESTAMP WITHOUT TIME ZONE,
+    primary key (id)
 );
+
+
+
+
+

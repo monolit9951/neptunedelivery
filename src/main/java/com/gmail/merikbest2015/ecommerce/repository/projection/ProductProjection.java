@@ -7,7 +7,7 @@ public interface ProductProjection {
     String getNameEn();
     String getNameUa();
     Integer getPrice();
-    Integer getCategoryId();
+    Long getCategoryId();
     Integer getAllergensId();
     Double getWeight();
     String getUrl();

@@ -1,6 +1,5 @@
 package com.gmail.merikbest2015.ecommerce.dto.products.response;
 
-import com.gmail.merikbest2015.ecommerce.dto.order.request.ClientInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,21 +9,21 @@ import lombok.Setter;
 public class FullProductResponse {
 
     private Long id;
-    private ClientInfo clientInfo;
+    private String name;
     private String nameRu;
     private String nameEn;
     private String nameUa;
     private Integer price;
-    private String description;
-    private String descriptionRu;
-    private String descriptionEn;
-    private String descriptionUa;
-    private Integer categoryId;
+    private Long categoryId;
     private Integer allergensId;
     private Double weight;
     private String url;
     private String img;
     private Integer status;
+    private String description;
+    private String descriptionRu;
+    private String descriptionEn;
+    private String descriptionUa;
     private Integer size;
     private Integer sale;
     private Integer cartCount;

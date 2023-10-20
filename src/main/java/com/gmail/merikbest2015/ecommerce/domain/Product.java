@@ -42,8 +42,12 @@ public class Product {
     @Column
     private Integer price;
 
+//    @Type( type = "jsonb" )
+//    @Column( columnDefinition = "jsonb" )
+//    private List<Long> categoriesId;
+
     @Column
-    private Integer categoryId;
+    private Long categoryId;
 
     @Column
     private Integer allergensId;

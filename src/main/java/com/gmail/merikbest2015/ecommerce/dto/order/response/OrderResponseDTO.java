@@ -23,8 +23,8 @@ public class OrderResponseDTO {
     private String comment;
     private Integer peopleCount;
     private List<OrderCartItem> cartItems;
-    private Integer studySticksCount;
     private Integer sticksCount;
+    private Integer studySticksCount;
     private DeliveryType deliveryType;
     private PaymentType paymentType;
     private StatusType statusType;
