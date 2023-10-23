@@ -10,6 +10,7 @@ public interface CategoryService {
     Page<CategoryProjection> getAllCategories(Pageable pageable);
 
     Category getCategoryById(Long categoryId );
+
     boolean isCategoryExists(Long categoryId);
 
 

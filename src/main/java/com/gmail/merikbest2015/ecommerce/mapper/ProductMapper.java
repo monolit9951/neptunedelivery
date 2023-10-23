@@ -1,7 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.mapper;
 
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
-import com.gmail.merikbest2015.ecommerce.dto.products.response.FullProductResponse;
+import com.gmail.merikbest2015.ecommerce.dto.products.response.ProductResponseDTO;
 import com.gmail.merikbest2015.ecommerce.repository.projection.ProductProjection;
 import com.gmail.merikbest2015.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +19,15 @@ public class ProductMapper {
     private final ProductService productService;
 
 
-    public HeaderResponse<FullProductResponse> getAllProducts(Pageable pageable, Long categoryId) {
+    public HeaderResponse<ProductResponseDTO> getAllProducts(Pageable pageable, Long categoryId) {
         Page<ProductProjection> products = productService.getAllProducts(pageable, categoryId);
         return commonMapper.getHeaderResponse(products.getContent(), products.getTotalPages(),
-                products.getTotalElements(), FullProductResponse.class);
+                products.getTotalElements(), ProductResponseDTO.class);
     }
 
 
-    public FullProductResponse getProductById(Long productId) {
-        return commonMapper.convertToResponse(productService.getProductById(productId), FullProductResponse.class);
+    public ProductResponseDTO getProductById(Long productId) {
+        return commonMapper.convertToResponse(productService.getProductById(productId), ProductResponseDTO.class);
     }
 
 }

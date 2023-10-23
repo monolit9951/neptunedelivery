@@ -1,7 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
-import com.gmail.merikbest2015.ecommerce.dto.category.response.CategoryResponse;
+import com.gmail.merikbest2015.ecommerce.dto.category.response.CategoryResponseDTO;
 import com.gmail.merikbest2015.ecommerce.mapper.CategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -21,15 +21,13 @@ public class CategoryController {
     private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public ResponseEntity<List<CategoryResponse>> getAllCategories(@PageableDefault(size = 15)Pageable pageable) {
-        HeaderResponse<CategoryResponse> response = categoryMapper.getAllCategories(pageable);
+    public ResponseEntity<List<CategoryResponseDTO>> getAllCategories(@PageableDefault(size = 15) Pageable pageable) {
+        HeaderResponse<CategoryResponseDTO> response = categoryMapper.getAllCategories(pageable);
         return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
     }
 
-    //getCategoryById method
-
     @GetMapping("/{categoryId}")
-    public ResponseEntity<CategoryResponse> getCategoryById(@PathVariable Long categoryId) {
+    public ResponseEntity<CategoryResponseDTO> getCategoryById(@PathVariable Long categoryId) {
         return ResponseEntity.ok(categoryMapper.getCategoryById(categoryId));
     }
 }
