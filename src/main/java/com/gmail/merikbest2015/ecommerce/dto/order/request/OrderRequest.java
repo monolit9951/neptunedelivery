@@ -12,12 +12,12 @@ import java.util.List;
 public class OrderRequest {
     private Instant toDateTime;
     private ClientInfo clientInfo;
-    private DeliveryAddress address;
+    private DeliveryAddress deliveryAddress;
     private String comment;
-    private Integer peopleQuantity;
+    private Integer peopleCount;
     private List<OrderCartItem> cartItems;
-    private Integer studyQuantity;
-    private Integer simpleQuantity;
+    private Integer sticksCount;
+    private Integer studySticksCount;
     private DeliveryType deliveryType;
     private PaymentType paymentType;
 }
