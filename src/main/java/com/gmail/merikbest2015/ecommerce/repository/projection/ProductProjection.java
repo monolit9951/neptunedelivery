@@ -1,8 +1,5 @@
 package com.gmail.merikbest2015.ecommerce.repository.projection;
 
-import java.util.UUID;
-
-
 public interface ProductProjection {
     Long getId();
     String getName();
@@ -10,7 +7,7 @@ public interface ProductProjection {
     String getNameEn();
     String getNameUa();
     Integer getPrice();
-    Integer getCategoryId();
+    Long getCategoryId();
     Integer getAllergensId();
     Double getWeight();
     String getUrl();
@@ -20,10 +17,8 @@ public interface ProductProjection {
     String getDescriptionRu();
     String getDescriptionEn();
     String getDescriptionUa();
-    Integer getCityId();
     Integer getSize();
     Integer getSale();
-    UUID getIikoId();
     Integer getCartCount();
     Integer getSort();
     Integer getBox();

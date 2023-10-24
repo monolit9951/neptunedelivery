@@ -4,7 +4,7 @@ package com.gmail.merikbest2015.ecommerce.controller.old;
 //import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 //import com.gmail.merikbest2015.ecommerce.dto.order.OrderItemResponse;
 //import com.gmail.merikbest2015.ecommerce.dto.order.OrderRequest;
-//import com.gmail.merikbest2015.ecommerce.dto.order.OrderResponse;
+//import com.gmail.merikbest2015.ecommerce.dto.order.OrderResponseDTO;
 //import com.gmail.merikbest2015.ecommerce.mapper.OrderMapper;
 //import com.gmail.merikbest2015.ecommerce.security.UserPrincipal;
 //import com.gmail.merikbest2015.ecommerce.service.graphql.GraphQLProvider;
@@ -31,7 +31,7 @@ package com.gmail.merikbest2015.ecommerce.controller.old;
 //    private final GraphQLProvider graphQLProvider;
 //
 //    @GetMapping(ORDER_ID)
-//    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long orderId) {
+//    public ResponseEntity<OrderResponseDTO> getOrderById(@PathVariable Long orderId) {
 //        return ResponseEntity.ok(orderMapper.getOrderById(orderId));
 //    }
 //
@@ -41,14 +41,14 @@ package com.gmail.merikbest2015.ecommerce.controller.old;
 //    }
 //
 //    @GetMapping
-//    public ResponseEntity<List<OrderResponse>> getUserOrders(@AuthenticationPrincipal UserPrincipal user,
+//    public ResponseEntity<List<OrderResponseDTO>> getUserOrders(@AuthenticationPrincipal UserPrincipal user,
 //                                                             @PageableDefault(size = 10) Pageable pageable) {
-//        HeaderResponse<OrderResponse> response = orderMapper.getUserOrders(user.getEmail(), pageable);
+//        HeaderResponse<OrderResponseDTO> response = orderMapper.getUserOrders(user.getEmail(), pageable);
 //        return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
 //    }
 //
 //    @PostMapping
-//    public ResponseEntity<OrderResponse> postOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
+//    public ResponseEntity<OrderResponseDTO> postOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
 //        return ResponseEntity.ok(orderMapper.postOrder(order, bindingResult));
 //    }
 //

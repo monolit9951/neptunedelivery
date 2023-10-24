@@ -53,9 +53,20 @@ public class OrderServiceImpl implements OrderService {
                 .findById(orderId)
                 .orElseThrow(() -> new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST));
 
-            order.setStatusType(statusType);
-            return orderRepository.save(order);
+        order.setStatusType(statusType);
+        return orderRepository.save(order);
 
+    }
+
+    @Override
+    public Order changeOrderFull(Long orderId, Order order) {
+
+        if (orderRepository.isOrderExists(orderId)) {
+            order.setId(orderId);
+            return orderRepository.save(order);
+        }
+
+        throw new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST);
     }
 
 

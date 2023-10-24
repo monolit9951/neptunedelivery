@@ -2,8 +2,9 @@ package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.StatusTypeRequest;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderChangeRequestDTO;
 import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderRequest;
-import com.gmail.merikbest2015.ecommerce.dto.order.response.OrderResponse;
+import com.gmail.merikbest2015.ecommerce.dto.order.response.OrderResponseDTO;
 import com.gmail.merikbest2015.ecommerce.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +25,7 @@ public class OrderController {
 
 
 //    @GetMapping(ORDER_ID)
-//    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long orderId) {
+//    public ResponseEntity<OrderResponseDTO> getOrderById(@PathVariable Long orderId) {
 //        return ResponseEntity.ok( oldOrderMapper.getOrderById(orderId));
 //    } admin func
 
@@ -34,29 +35,34 @@ public class OrderController {
 //    }
 //
 //    @GetMapping
-//    public ResponseEntity<List<OrderResponse>> getUserOrders(@AuthenticationPrincipal UserPrincipal user,
+//    public ResponseEntity<List<OrderResponseDTO>> getUserOrders(@AuthenticationPrincipal UserPrincipal user,
 //                                                             @PageableDefault(size = 10) Pageable pageable) {
-//        HeaderResponse<OrderResponse> response = oldOrderMapper.getUserOrders(user.getEmail(), pageable);
+//        HeaderResponse<OrderResponseDTO> response = oldOrderMapper.getUserOrders(user.getEmail(), pageable);
 //        return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
 //    }
 
     @GetMapping
-    public ResponseEntity<List<OrderResponse>> getUsersOrders(@PageableDefault(size = 15) Pageable pageable) {
-        HeaderResponse<OrderResponse> response = orderMapper.getAllOrders(pageable);
+    public ResponseEntity<List<OrderResponseDTO>> getUsersOrders(@PageableDefault(size = 15) Pageable pageable) {
+        HeaderResponse<OrderResponseDTO> response = orderMapper.getAllOrders(pageable);
         return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
     }
 
 
     @PostMapping
-    public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
+    public ResponseEntity<OrderResponseDTO> createOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
         return ResponseEntity.ok(orderMapper.createOrder(order, bindingResult));
     }
 
     @PutMapping("/{orderId}")
-    public ResponseEntity<OrderResponse> updateOrderStatus(@PathVariable Long orderId, @RequestBody StatusTypeRequest statusType) {
-        OrderResponse response = orderMapper.updateOrderStatus(orderId, statusType.getStatusType());
+    public ResponseEntity<OrderResponseDTO> updateOrderStatus(@PathVariable Long orderId, @RequestBody StatusTypeRequest statusType) {
+        OrderResponseDTO response = orderMapper.updateOrderStatus(orderId, statusType.getStatusType());
         return ResponseEntity.ok(response);
+    }
 
+    @PutMapping("/{orderId}/change")
+    public ResponseEntity<OrderResponseDTO> changeOrderFull(@PathVariable Long orderId, @RequestBody OrderChangeRequestDTO orderDetails, BindingResult bindingResult) {
+        OrderResponseDTO response = orderMapper.changeOrderFull(orderId, orderDetails, bindingResult);
+        return ResponseEntity.ok(response);
     }
 
 //    @PostMapping(GRAPHQL)

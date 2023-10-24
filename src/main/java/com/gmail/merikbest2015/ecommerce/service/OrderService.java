@@ -14,10 +14,12 @@ public interface OrderService {
 //
     Page<OrderProjection> getAllOrders(Pageable pageable);
 
-
     Order createOrder(Order order );
 
     Order updateOrderStatus(Long statusId, StatusType statusType);
+
+    Order changeOrderFull(Long orderId, Order order);
+
 
 //    String deleteOrder(Long orderId);
 //

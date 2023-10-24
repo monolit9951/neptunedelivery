@@ -1,5 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.dto.order.response;
 
+import com.gmail.merikbest2015.ecommerce.dto.order.request.ClientInfo;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.DeliveryAddress;
 import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderCartItem;
 import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
 import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
@@ -13,26 +15,17 @@ import java.util.List;
 
 @Getter
 @Setter
-public class OrderResponse {
+public class OrderResponseDTO {
     private Long id;
-    private Instant toDate;
-    private Instant toTime;
-    private String firstName;
-    private String phoneNumber;
-    private Long cityId;
-    private String street;
-    private String houseNumber;
-    private String houseEntrance;
-    private String houseFloor;
-    private String apartmentNumber;
-    private Integer postIndex;
+    private Instant toDateTime;
+    private ClientInfo clientInfo;
+    private DeliveryAddress deliveryAddress;
     private String comment;
-    private Integer peopleQuantity;
+    private Integer peopleCount;
     private List<OrderCartItem> cartItems;
-    private Integer studyQuantity;
-    private Integer simpleQuantity;
+    private Integer sticksCount;
+    private Integer studySticksCount;
     private DeliveryType deliveryType;
     private PaymentType paymentType;
     private StatusType statusType;
-
 }

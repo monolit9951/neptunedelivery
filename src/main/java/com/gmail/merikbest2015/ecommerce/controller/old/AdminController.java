@@ -2,7 +2,7 @@ package com.gmail.merikbest2015.ecommerce.controller.old;
 
 //import com.gmail.merikbest2015.ecommerce.dto.GraphQLRequest;
 //import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
-//import com.gmail.merikbest2015.ecommerce.dto.order.OrderResponse;
+//import com.gmail.merikbest2015.ecommerce.dto.order.OrderResponseDTO;
 //import com.gmail.merikbest2015.ecommerce.dto.perfume.PerfumeRequest;
 //import com.gmail.merikbest2015.ecommerce.dto.perfume.FullPerfumeResponse;
 //import com.gmail.merikbest2015.ecommerce.dto.user.BaseUserResponse;
@@ -58,15 +58,15 @@ package com.gmail.merikbest2015.ecommerce.controller.old;
 //    }
 //
 //    @GetMapping(ORDERS)
-//    public ResponseEntity<List<OrderResponse>> getAllOrders(@PageableDefault(size = 10) Pageable pageable) {
-//        HeaderResponse<OrderResponse> response = orderMapper.getAllOrders(pageable);
+//    public ResponseEntity<List<OrderResponseDTO>> getAllOrders(@PageableDefault(size = 10) Pageable pageable) {
+//        HeaderResponse<OrderResponseDTO> response = orderMapper.getAllOrders(pageable);
 //        return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
 //    }
 //
 //    @GetMapping(ORDER_BY_EMAIL)
-//    public ResponseEntity<List<OrderResponse>> getUserOrdersByEmail(@PathVariable String userEmail,
+//    public ResponseEntity<List<OrderResponseDTO>> getUserOrdersByEmail(@PathVariable String userEmail,
 //                                                                    @PageableDefault(size = 10) Pageable pageable) {
-//        HeaderResponse<OrderResponse> response = orderMapper.getUserOrders(userEmail, pageable);
+//        HeaderResponse<OrderResponseDTO> response = orderMapper.getUserOrders(userEmail, pageable);
 //        return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
 //    }
 //

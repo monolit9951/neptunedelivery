@@ -1,5 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.repository.projection;
 
+import com.gmail.merikbest2015.ecommerce.dto.order.request.ClientInfo;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.DeliveryAddress;
 import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderCartItem;
 import com.gmail.merikbest2015.ecommerce.enums.DeliveryType;
 import com.gmail.merikbest2015.ecommerce.enums.PaymentType;
@@ -13,37 +15,21 @@ public interface OrderProjection {
 
     Long getId();
 
-    Instant getToDate();
+    Instant getToDateTime();
 
-    Instant getToTime();
+    ClientInfo getClientInfo();
 
-    String getFirstName();
-
-    String getPhoneNumber();
-
-    Long getCityId();
-
-    String getStreet();
-
-    String getHouseNumber();
-
-    String getHouseEntrance();
-
-    String getHouseFloor();
-
-    String getApartmentNumber();
-
-    Integer getPostIndex();
+    DeliveryAddress getDeliveryAddress();
 
     String getComment();
 
-    Integer getPeopleQuantity();
+    Integer getPeopleCount();
 
     List<OrderCartItem> getCartItems();
 
-    Integer getStudyQuantity();
+    Integer getSticksCount();
 
-    Integer getSimpleQuantity();
+    Integer getStudySticksCount();
 
     DeliveryType getDeliveryType();
 
