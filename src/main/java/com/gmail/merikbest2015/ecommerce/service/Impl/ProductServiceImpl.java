@@ -42,4 +42,14 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(productId)
                 .orElseThrow(() -> new ApiRequestException(PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
+
+    @Override
+    public Product updateProductImg(Long productId, String img) {
+        Product updateProduct = productRepository
+                .findById(productId)
+                .orElseThrow(() -> new ApiRequestException(PRODUCT_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+        updateProduct.setImg(img);
+        return productRepository.save(updateProduct);
+    }
 }

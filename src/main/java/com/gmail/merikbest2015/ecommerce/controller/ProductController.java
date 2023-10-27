@@ -29,4 +29,11 @@ public class ProductController {
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long productId) {
         return ResponseEntity.ok(productMapper.getProductById(productId));
     }
+
+    @PatchMapping("/{productId}")
+    public ResponseEntity<ProductResponseDTO> updateProductImg(@PathVariable Long productId,
+                                                                   @RequestParam String img) {
+        ProductResponseDTO response = productMapper.updateProductImg(productId, img);
+        return ResponseEntity.ok(response);
+    }
 }

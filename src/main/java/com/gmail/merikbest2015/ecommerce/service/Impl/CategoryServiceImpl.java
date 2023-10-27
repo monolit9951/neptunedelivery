@@ -34,4 +34,13 @@ public class CategoryServiceImpl implements CategoryService {
     public boolean isCategoryExists(Long categoryId) {
         return categoryRepository.isCategoryExists(categoryId);
     }
+
+    public Category updateCategoryImg(Long categoryId, String img) {
+        Category updateCategory = categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new ApiRequestException(CATEGORY_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+        updateCategory.setImg(img);
+        return categoryRepository.save(updateCategory);
+    }
 }

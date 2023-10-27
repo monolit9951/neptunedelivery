@@ -1,5 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.mapper;
 
+import com.gmail.merikbest2015.ecommerce.domain.Product;
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.products.response.ProductResponseDTO;
 import com.gmail.merikbest2015.ecommerce.repository.projection.ProductProjection;
@@ -30,4 +31,8 @@ public class ProductMapper {
         return commonMapper.convertToResponse(productService.getProductById(productId), ProductResponseDTO.class);
     }
 
+    public ProductResponseDTO updateProductImg(Long productId, String img) {
+        Product product = productService.updateProductImg(productId, img);
+        return commonMapper.convertToResponse(product, ProductResponseDTO.class);
+    }
 }

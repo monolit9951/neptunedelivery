@@ -11,4 +11,6 @@ public interface ProductService {
     Page<ProductProjection> getAllProducts( Pageable pageable, Long categoryId );
 
     Product getProductById( Long productId );
+
+    Product updateProductImg(Long productId, String img);
 }

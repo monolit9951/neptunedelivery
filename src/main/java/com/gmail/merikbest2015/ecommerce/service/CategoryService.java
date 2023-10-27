@@ -13,6 +13,5 @@ public interface CategoryService {
 
     boolean isCategoryExists(Long categoryId);
 
-
-
+    Category updateCategoryImg(Long categoryId, String img);
 }

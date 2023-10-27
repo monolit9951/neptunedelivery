@@ -1,5 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.mapper;
 
+import com.gmail.merikbest2015.ecommerce.domain.Category;
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.category.response.CategoryResponseDTO;
 import com.gmail.merikbest2015.ecommerce.repository.projection.CategoryProjection;
@@ -24,5 +25,10 @@ public class CategoryMapper {
 
     public CategoryResponseDTO getCategoryById(Long categoryId) {
         return commonMapper.convertToResponse(categoryService.getCategoryById(categoryId), CategoryResponseDTO.class);
+    }
+
+    public CategoryResponseDTO updateCategoryImg(Long categoryId, String img) {
+        Category category = categoryService.updateCategoryImg(categoryId, img);
+        return commonMapper.convertToResponse(category, CategoryResponseDTO.class);
     }
 }
