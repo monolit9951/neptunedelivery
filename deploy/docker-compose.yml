@@ -5,7 +5,7 @@ services:
     container_name: backend
     build:
       context: ${PROJECT_ROOT_PATH}
-      dockerfile: ${PROJECT_ROOT_PATH}/deploy/backend.Dockerfile
+      dockerfile: deploy/backend.Dockerfile
     restart: always
     ports:
       - "8080:8080"
@@ -20,16 +20,16 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
 
-  frontend:
-    container_name: frontend
-    build:
-      context: ${PROJECT_ROOT_PATH}/frontend
-      dockerfile: ${PROJECT_ROOT_PATH}/deploy/frontend.Dockerfile
-    restart: always
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+  #  frontend:
+  #    container_name: frontend
+  #    build:
+  #      context: ${PROJECT_ROOT_PATH}
+  #      dockerfile: deploy/frontend.Dockerfile
+  #    restart: always
+  #    ports:
+  #      - "3000:3000"
+  #    depends_on:
+  #      - backend
 
   sushi-db:
     container_name: sushi-db
@@ -62,6 +62,5 @@ services:
       - DOZZLE_KEY=true
 
 networks:
-    default:
-        name: backend_network
-        driver: bridge
+  backend_network:
+    driver: bridge
