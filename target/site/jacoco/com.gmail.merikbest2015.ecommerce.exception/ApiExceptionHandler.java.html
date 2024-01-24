@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApiExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.gmail.merikbest2015.ecommerce.exception</a> &gt; <span class="el_source">ApiExceptionHandler.java</span></div><h1>ApiExceptionHandler.java</h1><pre class="source lang-java linenums">package com.gmail.merikbest2015.ecommerce.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.Map;
+
+@ControllerAdvice
+<span class="nc" id="L10">public class ApiExceptionHandler {</span>
+
+    @ExceptionHandler(ApiRequestException.class)
+    public ResponseEntity&lt;String&gt; handleApiRequestException(ApiRequestException exception) {
+<span class="nc" id="L14">        return ResponseEntity.status(exception.getStatus()).body(exception.getMessage());</span>
+    }
+
+    @ExceptionHandler(PasswordConfirmationException.class)
+    public ResponseEntity&lt;PasswordConfirmationException&gt; handlePasswordConfirmationException(PasswordConfirmationException exception) {
+<span class="nc" id="L19">        return ResponseEntity.badRequest().body(new PasswordConfirmationException(exception.getPassword2Error()));</span>
+    }
+
+    @ExceptionHandler(PasswordException.class)
+    public ResponseEntity&lt;PasswordException&gt; handlePasswordException(PasswordException exception) {
+<span class="nc" id="L24">        return ResponseEntity.badRequest().body(new PasswordException(exception.getPasswordError()));</span>
+    }
+
+    @ExceptionHandler(EmailException.class)
+    public ResponseEntity&lt;EmailException&gt; handleEmailError(EmailException exception) {
+<span class="nc" id="L29">        return ResponseEntity.badRequest().body(new EmailException(exception.getEmailError()));</span>
+    }
+
+    @ExceptionHandler(CaptchaException.class)
+    public ResponseEntity&lt;CaptchaException&gt; handleCaptchaException(CaptchaException exception) {
+<span class="nc" id="L34">        return ResponseEntity.badRequest().body(new CaptchaException(exception.getCaptchaError()));</span>
+    }
+
+    @ExceptionHandler(InputFieldException.class)
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleInputFieldException(InputFieldException exception) {
+<span class="nc" id="L39">        InputFieldException inputFieldException = new InputFieldException(exception.getBindingResult());</span>
+<span class="nc" id="L40">        return ResponseEntity.badRequest().body(inputFieldException.getErrorsMap());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

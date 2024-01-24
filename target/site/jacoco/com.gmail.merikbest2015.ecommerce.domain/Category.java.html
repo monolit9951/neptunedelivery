@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Category.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.gmail.merikbest2015.ecommerce.domain</a> &gt; <span class="el_source">Category.java</span></div><h1>Category.java</h1><pre class="source lang-java linenums">package com.gmail.merikbest2015.ecommerce.domain;
+
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.TypeDef;
+
+import javax.persistence.*;
+
+@Getter
+<span class="nc" id="L12">@Setter</span>
+<span class="nc" id="L13">@ToString</span>
+@Entity
+@TypeDef(name = &quot;jsonb&quot;, typeClass = JsonBinaryType.class)
+@Table(name = &quot;category&quot;)
+
+<span class="nc" id="L18">public class Category {</span>
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;category_id_seq&quot;)
+    @SequenceGenerator(name = &quot;category_id_seq&quot;, sequenceName = &quot;category_id_seq&quot;, initialValue = 20, allocationSize = 1)
+    @Column(name = &quot;id&quot;)
+<span class="nc" id="L23">    private Long id;</span>
+
+    @Column
+<span class="nc" id="L26">    private String name;</span>
+
+    @Column
+<span class="nc" id="L29">    private String nameUa;</span>
+
+    @Column
+<span class="nc" id="L32">    private String nameRu;</span>
+
+    @Column
+<span class="nc" id="L35">    private String nameEn;</span>
+
+    @Column
+<span class="nc" id="L38">    private String url;</span>
+
+    @Column
+<span class="nc" id="L41">    private String img;</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

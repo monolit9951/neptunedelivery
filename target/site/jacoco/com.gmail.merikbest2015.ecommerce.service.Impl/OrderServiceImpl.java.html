@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.gmail.merikbest2015.ecommerce.service.Impl</a> &gt; <span class="el_source">OrderServiceImpl.java</span></div><h1>OrderServiceImpl.java</h1><pre class="source lang-java linenums">package com.gmail.merikbest2015.ecommerce.service.Impl;
+
+import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
+import com.gmail.merikbest2015.ecommerce.domain.Order;
+import com.gmail.merikbest2015.ecommerce.enums.StatusType;
+import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
+import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
+import com.gmail.merikbest2015.ecommerce.repository.projection.OrderProjection;
+import com.gmail.merikbest2015.ecommerce.service.OrderService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+<span class="nc" id="L18">@RequiredArgsConstructor</span>
+public class OrderServiceImpl implements OrderService {
+
+    private final OrderRepository orderRepository;
+//    private final OrderItemRepository orderItemRepository;
+//    private final MailSender mailSender;
+
+//    @Override
+//    public OldOrder getOrderById(Long orderId) {
+//        return orderRepository.findById(orderId)
+//                .orElseThrow(() -&gt; new ApiRequestException(ORDER_NOT_FOUND, HttpStatus.NOT_FOUND));
+//    }
+
+    //    @Override
+//    public List&lt;OldOrderItem&gt; getOrderItemsByOrderId(Long orderId) {
+//        OldOrder oldOrder = getOrderById(orderId);
+//        return oldOrder.getOldOrderItems();
+//    }
+//
+    @Override
+    public Page&lt;OrderProjection&gt; getAllOrders(Pageable pageable) {
+<span class="nc" id="L39">        return orderRepository.findAllByOrderByIdAsc(pageable);</span>
+    }
+
+    @Transactional
+    @Override
+    public Order createOrder(Order order) {
+<span class="nc" id="L45">        order.setStatusType(StatusType.CREATED);</span>
+<span class="nc" id="L46">        return orderRepository.save(order);</span>
+    }
+
+    @Transactional
+    @Override
+    public Order updateOrderStatus(Long orderId, StatusType statusType) {
+<span class="nc" id="L52">        Order order = orderRepository</span>
+<span class="nc" id="L53">                .findById(orderId)</span>
+<span class="nc" id="L54">                .orElseThrow(() -&gt; new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST));</span>
+
+<span class="nc" id="L56">        order.setStatusType(statusType);</span>
+<span class="nc" id="L57">        return orderRepository.save(order);</span>
+
+    }
+
+    @Override
+    public Order changeOrderFull(Long orderId, Order order) {
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (orderRepository.isOrderExists(orderId)) {</span>
+<span class="nc" id="L65">            order.setId(orderId);</span>
+<span class="nc" id="L66">            return orderRepository.save(order);</span>
+        }
+
+<span class="nc" id="L69">        throw new ApiRequestException(ErrorMessage.ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST);</span>
+    }
+
+
+//    @Override
+//    public Page&lt;OldOrder&gt; getUserOrders(String email, Pageable pageable) {
+//        return orderRepository.findOrderByEmail(email, pageable);
+//    }
+//
+//    @Override
+//    @Transactional
+//    public Order postOrder(Order order, Map&lt;Long, Long&gt; perfumesId) {
+//        List&lt;OrderItem&gt; orderItemList = new ArrayList&lt;&gt;();
+//
+//        for (Map.Entry&lt;Long, Long&gt; entry : perfumesId.entrySet()) {
+//            Perfume perfume = perfumeRepository.findById(entry.getKey()).get();
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setPerfume(perfume);
+//            orderItem.setAmount((perfume.getPrice() * entry.getValue()));
+//            orderItem.setQuantity(entry.getValue());
+//            orderItemList.add(orderItem);
+//            orderItemRepository.save(orderItem);
+//        }
+//        order.getOrderItems().addAll(orderItemList);
+//        orderRepository.save(order);
+//
+//        String subject = &quot;Order #&quot; + order.getId();
+//        String template = &quot;order-template&quot;;
+//        Map&lt;String, Object&gt; attributes = new HashMap&lt;&gt;();
+//        attributes.put(&quot;order&quot;, order);
+////        mailSender.sendMessageHtml(order.getEmail(), subject, template, attributes);
+//        return order;
+//    }
+
+//    @Override
+//    @Transactional
+//    public String deleteOrder(Long orderId) {
+//        OldOrder oldOrder = orderRepository.findById(orderId)
+//                .orElseThrow(() -&gt; new ApiRequestException(ORDER_NOT_FOUND, HttpStatus.NOT_FOUND));
+//        orderRepository.delete( oldOrder );
+//        return &quot;Order deleted successfully&quot;;
+//    }
+//
+//    @Override
+//    public DataFetcher&lt;List&lt;OldOrder&gt;&gt; getAllOrdersByQuery() {
+//        return dataFetchingEnvironment -&gt; orderRepository.findAllByOrderByIdAsc();
+//    }
+
+//    @Override
+//    public DataFetcher&lt;List&lt;OldOrder&gt;&gt; getUserOrdersByEmailQuery() {
+//        return dataFetchingEnvironment -&gt; {
+//            String email = dataFetchingEnvironment.getArgument(&quot;email&quot;).toString();
+//            return orderRepository.findOrderByEmail(email);
+//        };
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

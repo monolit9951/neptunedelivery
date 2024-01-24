@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.gmail.merikbest2015.ecommerce.controller</a> &gt; <span class="el_source">OrderController.java</span></div><h1>OrderController.java</h1><pre class="source lang-java linenums">package com.gmail.merikbest2015.ecommerce.controller;
+
+import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
+import com.gmail.merikbest2015.ecommerce.dto.StatusTypeRequest;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderChangeRequestDTO;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderRequest;
+import com.gmail.merikbest2015.ecommerce.dto.order.response.OrderResponseDTO;
+import com.gmail.merikbest2015.ecommerce.mapper.OrderMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+
+@RestController
+<span class="nc" id="L21">@RequiredArgsConstructor</span>
+@RequestMapping(&quot;/api/orders&quot;)
+public class OrderController {
+    private final OrderMapper orderMapper;
+
+
+//    @GetMapping(ORDER_ID)
+//    public ResponseEntity&lt;OrderResponseDTO&gt; getOrderById(@PathVariable Long orderId) {
+//        return ResponseEntity.ok( oldOrderMapper.getOrderById(orderId));
+//    } admin func
+
+    //    @GetMapping(ORDER_ID_ITEMS)
+//    public ResponseEntity&lt;List&lt;OrderItemResponse&gt;&gt; getOrderItemsByOrderId(@PathVariable Long orderId) {
+//        return ResponseEntity.ok( oldOrderMapper.getOrderItemsByOrderId(orderId));
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity&lt;List&lt;OrderResponseDTO&gt;&gt; getUserOrders(@AuthenticationPrincipal UserPrincipal user,
+//                                                             @PageableDefault(size = 10) Pageable pageable) {
+//        HeaderResponse&lt;OrderResponseDTO&gt; response = oldOrderMapper.getUserOrders(user.getEmail(), pageable);
+//        return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
+//    }
+
+    @GetMapping
+    public ResponseEntity&lt;List&lt;OrderResponseDTO&gt;&gt; getUsersOrders(@PageableDefault(size = 15) Pageable pageable) {
+<span class="nc" id="L46">        HeaderResponse&lt;OrderResponseDTO&gt; response = orderMapper.getAllOrders(pageable);</span>
+<span class="nc" id="L47">        return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());</span>
+    }
+
+
+    @PostMapping
+    public ResponseEntity&lt;OrderResponseDTO&gt; createOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
+<span class="nc" id="L53">        return ResponseEntity.ok(orderMapper.createOrder(order, bindingResult));</span>
+    }
+
+    @PutMapping(&quot;/{orderId}&quot;)
+    public ResponseEntity&lt;OrderResponseDTO&gt; updateOrderStatus(@PathVariable Long orderId, @RequestBody StatusTypeRequest statusType) {
+<span class="nc" id="L58">        OrderResponseDTO response = orderMapper.updateOrderStatus(orderId, statusType.getStatusType());</span>
+<span class="nc" id="L59">        return ResponseEntity.ok(response);</span>
+    }
+
+    @PutMapping(&quot;/{orderId}/change&quot;)
+    public ResponseEntity&lt;OrderResponseDTO&gt; changeOrderFull(@PathVariable Long orderId, @RequestBody OrderChangeRequestDTO orderDetails, BindingResult bindingResult) {
+<span class="nc" id="L64">        OrderResponseDTO response = orderMapper.changeOrderFull(orderId, orderDetails, bindingResult);</span>
+<span class="nc" id="L65">        return ResponseEntity.ok(response);</span>
+    }
+
+//    @PostMapping(GRAPHQL)
+//    public ResponseEntity&lt;ExecutionResult&gt; getUserOrdersByQuery(@RequestBody GraphQLRequest request) {
+//        return ResponseEntity.ok(graphQLProvider.getGraphQL().execute(request.getQuery()));
+//    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
