@@ -12,6 +12,7 @@ public class ErrorMessage {
     public static final String ORDER_NOT_FOUND = "Order not found.";
     public static final String PERFUME_NOT_FOUND = "Perfume not found.";
     public static final String PRODUCT_NOT_FOUND = "Product not found.";
+    public static final String VOUCHER_NOT_FOUND = "Voucher not found.";
     public static final String CATEGORY_NOT_FOUND = "Category not found.";
     public static final String USER_NOT_FOUND = "User not found.";
     public static final String EMPTY_FIRST_NAME = "First name cannot be empty";
@@ -24,4 +25,6 @@ public class ErrorMessage {
     public static final String EMPTY_PHONE_NUMBER = "Phone number cannot be empty";
     public static final String EMPTY_POST_INDEX = "Post index cannot be empty";
     public static final String EMPTY_ORDER_STATUS = "Order status cannot be empty";
+    public static final String VOUCHER_IS_EXPIRED = "Voucher is expired";
+    public static final String DISCOUNT_TYPE_NOT_EXIST = "Discount type do not exist";
 }

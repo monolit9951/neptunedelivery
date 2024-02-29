@@ -94,6 +94,10 @@ public class Product {
     @Type( type = UtcInstantType.CANONICAL_NAME )
     private Instant removalDate;
 
+    @Column
+    @OneToOne
+    private Discount discount;
+
 
     @Override
     public boolean equals( Object o ) {
