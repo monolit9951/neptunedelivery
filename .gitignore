@@ -23,6 +23,7 @@ target/
 /nbproject/private/
 /nbbuild/
 /dist/
+/sushi-data/
 /nbdist/
 /.nb-gradle/
 build/
