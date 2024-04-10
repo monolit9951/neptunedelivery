@@ -94,9 +94,8 @@ public class Product {
     @Type( type = UtcInstantType.CANONICAL_NAME )
     private Instant removalDate;
 
-    @Column
-    @OneToOne
-    private Discount discount;
+//    @OneToOne
+//    private Discount discount;
 
 
     @Override

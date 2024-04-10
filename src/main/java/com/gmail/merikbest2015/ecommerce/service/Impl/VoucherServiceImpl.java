@@ -24,7 +24,7 @@ public class VoucherServiceImpl implements VoucherService {
         Voucher voucher = voucherRepository.findVoucherByCode(voucherKey).orElseThrow(() -> new ApiRequestException(VOUCHER_NOT_FOUND, HttpStatus.NOT_FOUND));
         if(voucher.getQuantityOfUse() == 0 || voucher.getDateUntilValid().isBefore(Instant.now())){
             voucherRepository.delete(voucher);
-            throw new ApiRequestException(VOUCHER_IS_EXPIRED, HttpStatus.NOT_FOUND);
+            throw new ApiRequestException(VOUCHER_IS_EXPIRED, HttpStatus.GONE);
         }
         return voucher;
     }

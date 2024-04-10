@@ -20,4 +20,5 @@ public class OrderRequest {
     private Integer studySticksCount;
     private DeliveryType deliveryType;
     private PaymentType paymentType;
+    private String code;
 }

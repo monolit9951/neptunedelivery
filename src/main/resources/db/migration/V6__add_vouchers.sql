@@ -9,3 +9,6 @@ CREATE TABLE voucher
     removal_date            TIMESTAMP WITHOUT TIME ZONE,
     primary key (id)
 );
+
+ALTER TABLE orders
+    ADD COLUMN code text;

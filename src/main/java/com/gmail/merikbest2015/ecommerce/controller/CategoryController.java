@@ -21,7 +21,7 @@ public class CategoryController {
     private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public ResponseEntity<List<CategoryResponseDTO>> getAllCategories(@PageableDefault(size = 15) Pageable pageable) {
+    public ResponseEntity<List<CategoryResponseDTO>> getAllCategories(Pageable pageable) {
         HeaderResponse<CategoryResponseDTO> response = categoryMapper.getAllCategories(pageable);
         return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
     }

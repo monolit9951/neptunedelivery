@@ -39,8 +39,4 @@ public class Category {
 
     @Column
     private String img;
-
-    @Column
-    @OneToOne
-    private Discount discount;
 }
