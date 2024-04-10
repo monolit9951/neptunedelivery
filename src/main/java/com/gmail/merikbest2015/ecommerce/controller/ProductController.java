@@ -19,7 +19,7 @@ public class ProductController {
     private final ProductMapper productMapper;
 
     @GetMapping
-    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(@PageableDefault(size = 15) Pageable pageable,
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(Pageable pageable,
                                                                    @RequestParam(required = false) Long categoryId) { //
         HeaderResponse<ProductResponseDTO> response = productMapper.getAllProducts(pageable, categoryId);
         return ResponseEntity.ok().headers(response.getHeaders()).body(response.getItems());
