@@ -28,4 +28,5 @@ public class OrderResponseDTO {
     private DeliveryType deliveryType;
     private PaymentType paymentType;
     private StatusType statusType;
+    private String code;
 }

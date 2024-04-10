@@ -74,4 +74,7 @@ public class Order {
     @Column
     @Enumerated( EnumType.STRING )
     private StatusType statusType;
+
+    @Column
+    private String code;
 }
