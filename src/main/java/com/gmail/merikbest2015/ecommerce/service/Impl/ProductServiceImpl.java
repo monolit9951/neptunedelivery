@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Page<ProductProjection> getAllProducts(Pageable pageable, Long categoryId) {
+    public Page<Product> getAllProducts(Pageable pageable, Long categoryId) {
 
         if(categoryId == null) {
             return productRepository.findAllByOrderByIdAsc(pageable);

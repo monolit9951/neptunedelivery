@@ -1,5 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.repository.projection;
 
+import com.gmail.merikbest2015.ecommerce.domain.Discount;
+
 public interface ProductProjection {
     Long getId();
     String getName();
@@ -22,4 +24,5 @@ public interface ProductProjection {
     Integer getCartCount();
     Integer getSort();
     Integer getBox();
+    Discount getDiscounts();
 }

@@ -1,5 +1,8 @@
 package com.gmail.merikbest2015.ecommerce.dto.products.response;
 
+import com.gmail.merikbest2015.ecommerce.domain.Discount;
+import com.gmail.merikbest2015.ecommerce.dto.discounts.response.DiscountResponseDTO;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,4 +32,5 @@ public class ProductResponseDTO {
     private Integer cartCount;
     private Integer sort;
     private Integer box;
+    private Discount discount;
 }

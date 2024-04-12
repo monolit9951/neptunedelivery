@@ -1,5 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.mapper;
 
+import com.gmail.merikbest2015.ecommerce.domain.Product;
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.products.response.ProductResponseDTO;
 import com.gmail.merikbest2015.ecommerce.repository.projection.ProductProjection;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 @Component
@@ -20,9 +23,13 @@ public class ProductMapper {
 
 
     public HeaderResponse<ProductResponseDTO> getAllProducts(Pageable pageable, Long categoryId) {
-        Page<ProductProjection> products = productService.getAllProducts(pageable, categoryId);
+        Page<Product> products = productService.getAllProducts(pageable, categoryId);
         return commonMapper.getHeaderResponse(products.getContent(), products.getTotalPages(),
                 products.getTotalElements(), ProductResponseDTO.class);
+
+//        response.getItems().forEach(item-> item.);
+//        List<ProductResponseDTO> response = products.getContent().stream().map(x->ProductResponseDTO.builder().build());
+//        return response;
     }
 
 

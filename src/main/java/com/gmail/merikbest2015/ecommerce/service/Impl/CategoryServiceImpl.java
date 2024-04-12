@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public Page<CategoryProjection> getAllCategories(Pageable pageable) {
+    public Page<Category> getAllCategories(Pageable pageable) {
         return categoryRepository.findAllByCategoryByIdAsc(pageable);
     }
 

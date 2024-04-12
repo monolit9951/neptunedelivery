@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface CategoryService {
 
-    Page<CategoryProjection> getAllCategories(Pageable pageable);
+    Page<Category> getAllCategories(Pageable pageable);
 
     Category getCategoryById(Long categoryId );
 

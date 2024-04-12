@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query( "SELECT c FROM Category c ORDER BY c.id ASC" )
-    Page<CategoryProjection> findAllByCategoryByIdAsc(Pageable pageable);
+    Page<Category> findAllByCategoryByIdAsc(Pageable pageable);
 
     @Query(value = "SELECT EXISTS (SELECT 1 FROM category WHERE id = :categoryId)", nativeQuery = true)
     boolean isCategoryExists(@Param("categoryId") Long categoryId);

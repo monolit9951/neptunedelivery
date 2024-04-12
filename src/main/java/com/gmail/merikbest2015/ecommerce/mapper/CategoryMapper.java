@@ -1,5 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.mapper;
 
+import com.gmail.merikbest2015.ecommerce.domain.Category;
 import com.gmail.merikbest2015.ecommerce.dto.HeaderResponse;
 import com.gmail.merikbest2015.ecommerce.dto.category.response.CategoryResponseDTO;
 import com.gmail.merikbest2015.ecommerce.repository.projection.CategoryProjection;
@@ -17,7 +18,7 @@ public class CategoryMapper {
     private final CategoryService categoryService;
 
     public HeaderResponse<CategoryResponseDTO> getAllCategories(Pageable pageable) {
-        Page<CategoryProjection> category = categoryService.getAllCategories(pageable);
+        Page<Category> category = categoryService.getAllCategories(pageable);
         return commonMapper.getHeaderResponse(category.getContent(), category.getTotalPages(),
                 category.getTotalElements(), CategoryResponseDTO.class);
     }
