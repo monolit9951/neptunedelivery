@@ -9,7 +9,7 @@ import java.util.Map;
 @Data
 public class DiscountRequest {
 
-    private Map<String, BigDecimal> discountPerQuantity;
+    private Map<Long, BigDecimal> discountPerQuantity;
     private Long relationId;
-    private DiscountType type;
+    private DiscountType discountType;
 }
