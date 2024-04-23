@@ -1,0 +1,1 @@
+UPDATE product SET img='blob:https://web.telegram.org/793ad840-151f-4f1e-81f7-2c5dd56b552b'
