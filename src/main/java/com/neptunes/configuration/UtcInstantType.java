@@ -11,7 +11,7 @@ import org.hibernate.type.InstantType;
 
 public class UtcInstantType extends InstantType {
 
-    public static final String CANONICAL_NAME = "com.gmail.merikbest2015.ecommerce.configuration.UtcInstantType";
+    public static final String CANONICAL_NAME = "com.neptunes.configuration.UtcInstantType";
 
 
     @Override
