@@ -30,14 +30,14 @@ public class DiscountServiceImpl implements DiscountService {
     @Override
     public Discount createDiscount(Discount discount) {
         switch(discount.getDiscountType()){
-            case DiscountType.PRODUCT:
+            case PRODUCT:
                 Product product = productRepository.findById(discount.getRelationId()).orElseThrow(()->
                         new ApiRequestException(PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND));
                 product.setDiscount(discount);
                 discount = discountRepository.save(discount);
                 productRepository.save(product);
                 return discount;
-            case DiscountType.CATEGORY:
+            case CATEGORY:
                 Category category = categoryRepository.findById(discount.getRelationId()).orElseThrow(()->
                         new ApiRequestException(CATEGORY_NOT_FOUND, HttpStatus.NOT_FOUND));
                 category.setDiscount(discount);
