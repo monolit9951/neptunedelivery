@@ -3,18 +3,14 @@ package com.neptunes.service.Impl;
 //import com.gmail.merikbest2015.ecommerce.domain.User;
 //import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
 //import com.gmail.merikbest2015.ecommerce.security.JwtProvider;
-import com.gmail.merikbest2015.ecommerce.security.oauth2.*;
-import com.neptunes.service.email.MailSender;
 
-        import org.junit.runner.RunWith;
-        import org.springframework.beans.factory.annotation.Value;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-        import static org.junit.jupiter.api.Assertions.assertNull;
+import com.neptunes.service.email.MailSender;
 
 
 @SpringBootTest
