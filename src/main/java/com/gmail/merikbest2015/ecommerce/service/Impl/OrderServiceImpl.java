@@ -2,9 +2,11 @@ package com.gmail.merikbest2015.ecommerce.service.Impl;
 
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.domain.Order;
+import com.gmail.merikbest2015.ecommerce.dto.order.request.OrderCartItem;
 import com.gmail.merikbest2015.ecommerce.enums.StatusType;
 import com.gmail.merikbest2015.ecommerce.exception.ApiRequestException;
 import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
+import com.gmail.merikbest2015.ecommerce.repository.ProductRepository;
 import com.gmail.merikbest2015.ecommerce.repository.projection.OrderProjection;
 import com.gmail.merikbest2015.ecommerce.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +16,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
 //    private final OrderItemRepository orderItemRepository;
 //    private final MailSender mailSender;
 
@@ -42,6 +48,8 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public Order createOrder(Order order) {
+        List<OrderCartItem> cartItems = order.getCartItems();
+        System.out.println("total order = " + totalSumOrder(cartItems));
         order.setStatusType(StatusType.CREATED);
         return orderRepository.save(order);
     }
@@ -121,4 +129,12 @@ public class OrderServiceImpl implements OrderService {
 //            return orderRepository.findOrderByEmail(email);
 //        };
 //    }
+
+    private int totalSumOrder(List<OrderCartItem> cartItems) {
+        int sumOrder = 0;
+        for (OrderCartItem orderCartItem : cartItems) {
+            sumOrder += productRepository.findPriceById(orderCartItem.getId()) * orderCartItem.getQuantity();
+        }
+        return sumOrder;
+    }
 }
