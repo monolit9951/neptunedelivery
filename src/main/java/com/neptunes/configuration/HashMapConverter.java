@@ -9,13 +9,14 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.AttributeConverter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class HashMapConverter implements AttributeConverter<Map<Long, Object>, String> {
+public class HashMapConverter implements AttributeConverter<Map<Long, BigDecimal>, String> {
 
     private final ObjectMapper objectMapper;
 
@@ -24,10 +25,10 @@ public class HashMapConverter implements AttributeConverter<Map<Long, Object>, S
     }
 
     @Override
-    public String convertToDatabaseColumn(Map<Long, Object> longObjectMap) {
+    public String convertToDatabaseColumn(Map<Long, BigDecimal> longBigDecimalMap) {
         String customInfoJson = null;
         try {
-            customInfoJson = objectMapper.writeValueAsString(longObjectMap);
+            customInfoJson = objectMapper.writeValueAsString(longBigDecimalMap);
         } catch (final JsonProcessingException e) {
             log.error("JSON writing error", e);
         }
@@ -36,11 +37,10 @@ public class HashMapConverter implements AttributeConverter<Map<Long, Object>, S
     }
 
     @Override
-    public Map<Long, Object> convertToEntityAttribute(String json) {
-        Map<Long, Object> customInfo = null;
+    public Map<Long, BigDecimal> convertToEntityAttribute(String json) {
+        Map<Long, BigDecimal> customInfo = null;
         try {
-            customInfo = objectMapper.readValue(json,
-                    new TypeReference<HashMap<Long, Object>>() {});
+            customInfo = objectMapper.readValue(json, new TypeReference<HashMap<Long, BigDecimal>>() {});
         } catch (final IOException e) {
             log.error("JSON reading error", e);
         }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -40,7 +41,7 @@ public class Product {
     private String nameUa;
 
     @Column
-    private Integer price;
+    private BigDecimal price;
 
 //    @Type( type = "jsonb" )
 //    @Column( columnDefinition = "jsonb" )

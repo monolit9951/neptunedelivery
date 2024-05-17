@@ -6,7 +6,7 @@ CREATE TABLE product
     name_ru        varchar(255),
     name_en        varchar(255),
     name_ua        varchar(255),
-    price          int4,
+    price          numeric(19, 2),
     category_id    int8,
     allergens_id   int4,
     weight         float8,
@@ -42,6 +42,8 @@ CREATE TABLE orders
     payment_type       varchar(255),
     status_type        varchar(255) not null,
     removal_date       TIMESTAMP WITHOUT TIME ZONE,
+    total_sum          numeric(19, 2),
+    stripe_order_id    varchar(255),
     primary key (id)
 );
 

@@ -25,6 +25,7 @@ public class Discount {
     private Long id;
 
     @Convert(converter = HashMapConverter.class)
+    @Column(columnDefinition = "json")
     private Map<Long, BigDecimal> discountPerQuantity;
 
     @Enumerated(EnumType.STRING)

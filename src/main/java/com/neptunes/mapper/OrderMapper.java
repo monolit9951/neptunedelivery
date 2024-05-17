@@ -61,13 +61,13 @@ public class OrderMapper {
 //        return orderService.deleteOrder(orderId);
 //    }
 
-    public OrderResponseDTO createOrder(OrderRequest orderRequest, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new InputFieldException(bindingResult);
-        }
-        Order order = orderService.createOrder(commonMapper.convertToEntity(orderRequest, Order.class));
-        return commonMapper.convertToResponse(order, OrderResponseDTO.class);
-    }
+//    public OrderResponseDTO createOrder(OrderRequest orderRequest, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            throw new InputFieldException(bindingResult);
+//        }
+//        Order order = orderService.createOrder(commonMapper.convertToEntity(orderRequest, Order.class));
+//        return commonMapper.convertToResponse(order, OrderResponseDTO.class);
+//    }
 
 
 }

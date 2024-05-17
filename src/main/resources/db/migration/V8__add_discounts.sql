@@ -2,7 +2,7 @@ create sequence discount_id_seq start 54 increment 1;
 CREATE TABLE discount
 (
     id                      int8 not null,
-    discount_per_quantity   text,
+    discount_per_quantity   json,
     discount_type           varchar(255),
     relation_id             int8 not null,
     primary key (id)

@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
@@ -18,6 +20,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(value = "SELECT EXISTS (SELECT 1 FROM orders WHERE id = :orderId)", nativeQuery = true)
     boolean isOrderExists(@Param("orderId") Long orderId);
+
+    @Query("SELECT o FROM Order o WHERE o.stripeOrderId = :stripeOrderId")
+    Optional<Order> findByStripeOrderId(@Param("stripeOrderId") String stripeOrderId);
 //
 //    Page<Order> findAllByOrderByIdAsc(Pageable pageable);
 //

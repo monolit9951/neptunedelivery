@@ -5,17 +5,23 @@ VALUES (11, 'Napój', 'Напиток', 'Напиток', 'Drink', 'http://kokta
 
 
 INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
-VALUES  (1, '{"1":"0.1", "5":"0.3", "10":"0.5"}', 'PRODUCT', 1);
-INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
-VALUES  (2, '{"1":"0.3", "5":"0.3", "10":"0.5"}', 'CATEGORY', 1);
-INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
-VALUES  (3, '{"1":"0.3"}', 'PRODUCT', 2);
-INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
-VALUES  (4, '{"1":"0.1", "5":"0.3", "10":"0.5"}', 'CATEGORY', 2);
-INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
-VALUES  (5, '{"1":"0.3", "5":"0.5"', 'PRODUCT', 3);
-INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
-VALUES  (6, '{"1":"0.1", "5":"0.3", "10":"0.5"}', 'CATEGORY', 3);
+VALUES (1, '{"1":0.1, "5":0.3, "10":0.5}', 'PRODUCT', 1);
 
-UPDATE product SET discount_id=1 where id=1;
-UPDATE product SET discount_id=3 where id=2;
+INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
+VALUES (2, '{"1":0.3, "5":0.3, "10":0.5}', 'CATEGORY', 1);
+
+INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
+VALUES (3, '{"1":0.3}', 'PRODUCT', 2);
+
+INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
+VALUES (4, '{"1":0.1, "5":0.3, "10":0.5}', 'CATEGORY', 2);
+
+INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
+VALUES (5, '{"1":0.3, "5":0.5}', 'PRODUCT', 3);
+
+INSERT INTO discount (id, discount_per_quantity, discount_type, relation_id)
+VALUES (6, '{"1":0.1, "5":0.3, "10":0.5}', 'CATEGORY', 3);
+
+UPDATE product SET discount_id=1 WHERE id=1;
+UPDATE product SET discount_id=3 WHERE id=2;
+

@@ -17,21 +17,21 @@ public class CommonMapper {
     
     private final ModelMapper modelMapper;
 
-    <T, S> S convertToEntity(T data, Class<S> type) {
+   public  <T, S> S convertToEntity(T data, Class<S> type) {
         return modelMapper.map(data, type);
     }
 
-    <T, S> S convertToResponse(T data, Class<S> type) {
+    public <T, S> S convertToResponse(T data, Class<S> type) {
         return modelMapper.map(data, type);
     }
 
-    <T, S> List<S> convertToResponseList(List<T> lists, Class<S> type) {
+    public <T, S> List<S> convertToResponseList(List<T> lists, Class<S> type) {
         return lists.stream()
                 .map(list -> convertToResponse(list, type))
                 .collect(Collectors.toList());
     }
 
-    <T, S> HeaderResponse<S> getHeaderResponse(List<T> orders, Integer totalPages, Long totalElements, Class<S> type) {
+    public <T, S> HeaderResponse<S> getHeaderResponse(List<T> orders, Integer totalPages, Long totalElements, Class<S> type) {
         List<S> orderResponses = convertToResponseList(orders, type);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("page-total-count", String.valueOf(totalPages));

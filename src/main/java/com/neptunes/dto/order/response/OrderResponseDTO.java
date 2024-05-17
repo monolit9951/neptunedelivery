@@ -30,4 +30,5 @@ public class OrderResponseDTO {
     private PaymentType paymentType;
     private StatusType statusType;
     private String code;
+    private String urlForPayment;
 }

@@ -7,6 +7,8 @@ import com.neptunes.dto.order.request.OrderRequest;
 import com.neptunes.dto.order.response.OrderResponseDTO;
 import com.neptunes.mapper.OrderMapper;
 
+import com.neptunes.service.OrderService;
+import com.stripe.exception.StripeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -23,6 +25,7 @@ import java.util.List;
 @RequestMapping("/api/orders")
 public class OrderController {
     private final OrderMapper orderMapper;
+    private final OrderService orderService;
 
 
 //    @GetMapping(ORDER_ID)
@@ -50,8 +53,8 @@ public class OrderController {
 
 
     @PostMapping
-    public ResponseEntity<OrderResponseDTO> createOrder(@Valid @RequestBody OrderRequest order, BindingResult bindingResult) {
-        return ResponseEntity.ok(orderMapper.createOrder(order, bindingResult));
+    public ResponseEntity<OrderResponseDTO> createOrder(@Valid @RequestBody OrderRequest orderRequest) throws StripeException {
+        return ResponseEntity.ok(orderService.createOrder(orderRequest));
     }
 
     @PutMapping("/{orderId}")
