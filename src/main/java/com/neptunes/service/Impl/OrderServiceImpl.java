@@ -146,32 +146,22 @@ public class OrderServiceImpl implements OrderService {
 
     private Session createPaymentSession(Order order) throws StripeException {
         List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
-
-        for (OrderCartItem orderCartItem : order.getCartItems()) {
-            Product product = productRepository.findById(orderCartItem.getId())
-                    .orElseThrow(() -> new NoSuchElementException("Can't find product by id: " + orderCartItem.getId()));
-
-            String productName = product.getName(); // Назва продукту
-            BigDecimal price = product.getPrice(); // Ціна продукту
-            long quantity = orderCartItem.getQuantity(); // Кількість продукту
-
-            lineItems.add(
-                    SessionCreateParams.LineItem.builder()
-                            .setPriceData(
-                                    SessionCreateParams.LineItem.PriceData.builder()
-                                            .setCurrency(CURRENCY)
-                                            .setUnitAmount(convertPLNToGrosze(price))
-                                            .setProductData(
-                                                    SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                            .setName(productName)
-                                                            .build()
-                                            )
-                                            .build()
-                            )
-                            .setQuantity(quantity)
-                            .build()
-            );
-        }
+        lineItems.add(
+                SessionCreateParams.LineItem.builder()
+                        .setPriceData(
+                                SessionCreateParams.LineItem.PriceData.builder()
+                                        .setCurrency(CURRENCY)
+                                        .setUnitAmount(convertPLNToGrosze(order.getTotalSum()))
+                                        .setProductData(
+                                                SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                                                        .setName("Order " + order.getId())
+                                                        .build()
+                                        )
+                                        .build()
+                        )
+                        .setQuantity(1L)
+                        .build()
+        );
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
