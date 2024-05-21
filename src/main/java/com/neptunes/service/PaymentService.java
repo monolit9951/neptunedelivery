@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 public interface PaymentService {
 //        Session createPaymentSession(String OrderId) throws StripeException;
 
-        PaymentIntent retrievePaymentIntent(String id) throws StripeException;
+        PaymentIntent retrievePaymentIntent(String id);
 
-        void processStripeWebhook(String payload, String sigHeader) throws StripeException, JsonMappingException;
+        void processStripeWebhook(String payload, String sigHeader);
 }

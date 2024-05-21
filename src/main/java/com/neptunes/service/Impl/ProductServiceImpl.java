@@ -5,13 +5,11 @@ import com.neptunes.exception.ApiRequestException;
 import com.neptunes.repository.ProductRepository;
 import com.neptunes.service.CategoryService;
 import com.neptunes.service.ProductService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import static com.neptunes.constants.ErrorMessage.CATEGORY_NOT_FOUND;
 import static com.neptunes.constants.ErrorMessage.PRODUCT_NOT_FOUND;
 

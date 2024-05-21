@@ -2,16 +2,14 @@ package com.neptunes.service.Impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.neptunes.configuration.StripeConfig;
 import com.neptunes.constants.ErrorMessage;
 import com.neptunes.domain.Order;
 import com.neptunes.enums.StatusType;
-import com.neptunes.exception.ApiRequestException;
-import com.neptunes.exception.JsonProcessingFailureException;
-import com.neptunes.exception.PaymentMismatchException;
+import com.neptunes.exception.*;
 import com.neptunes.repository.OrderRepository;
 import com.neptunes.service.OrderService;
 import com.neptunes.service.PaymentService;
-import com.neptunes.exception.VerificationException;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;
@@ -19,9 +17,9 @@ import com.stripe.model.EventDataObjectDeserializer;
 import com.stripe.model.PaymentIntent;
 import com.stripe.net.Webhook;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 
 @Service
@@ -29,24 +27,29 @@ import java.math.BigDecimal;
 public class PaymentServiceImpl implements PaymentService {
     private final OrderRepository orderRepository;
     private final OrderService orderService;
-    @Value("${stripe.webhook}")
-    private String webhookKey;
+    private final StripeConfig stripeConfig;
+    private final static String SUCCEEDED_STATUS = "succeeded";
 
     @Override
-    public PaymentIntent retrievePaymentIntent(String id) throws StripeException {
-        PaymentIntent paymentIntent = PaymentIntent.retrieve(id);
+    public PaymentIntent retrievePaymentIntent(String id) {
+        PaymentIntent paymentIntent;
+        try {
+            paymentIntent = PaymentIntent.retrieve(id);
+        } catch (StripeException e) {
+            throw new NotFoundPaymentIntentByIdException("Payment intent not found with id = " + id);
+        }
         Order orderDb = getOrderByPaymentIntentId(id);
         String statusPaid = paymentIntent.getStatus();
         Long amountPaid = paymentIntent.getAmount();
         updateOrderStatusBasedOnPayment(orderDb, statusPaid, amountPaid);
-        return PaymentIntent.retrieve(id);
+        return paymentIntent;
     }
 
     @Override
     public void processStripeWebhook(String payload, String sigHeader) {
         Event event;
         try {
-            event = Webhook.constructEvent(payload, sigHeader, webhookKey);
+            event = Webhook.constructEvent(payload, sigHeader, stripeConfig.getWebhookKey());
         } catch (SignatureVerificationException e) {
             throw new VerificationException("Failed signature verification!");
         }
@@ -76,7 +79,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private void updateOrderStatusBasedOnPayment(Order orderDb, String statusPaid, long amountPaid) {
-        if ("succeeded".equalsIgnoreCase(statusPaid)) {
+        if (SUCCEEDED_STATUS.equalsIgnoreCase(statusPaid)) {
             BigDecimal totalSumOrder = orderDb.getTotalSum();
             BigDecimal paid = convertGroszeToPLN(amountPaid);
             if (totalSumOrder.equals(paid)) {
@@ -97,9 +100,8 @@ public class PaymentServiceImpl implements PaymentService {
             JsonNode jsonNode = objectMapper.readTree(rawJson);
             paymentIntentId = jsonNode.get("id").asText();
         } catch (Exception e) {
-            throw new JsonProcessingFailureException("Can't parsing id");
+            throw new JsonProcessingFailureException("Can't parse ID/ Unable to parse ID");
         }
         return paymentIntentId;
     }
-
 }
