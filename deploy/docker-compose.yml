@@ -3,9 +3,7 @@ version: '3.8'
 services:
   backend:
     container_name: backend
-    build:
-      context: ${PROJECT_ROOT_PATH}
-      dockerfile: deploy/backend.Dockerfile
+    image: ${HOST_FOR_DOCKER_IMAGE}/neptunessushi_backend_${ENVIRONMENT}:${VERSION}
     restart: always
     ports:
       - "8080:8080"
@@ -20,16 +18,16 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
 
-  #  frontend:
-  #    container_name: frontend
-  #    build:
-  #      context: ${PROJECT_ROOT_PATH}
-  #      dockerfile: deploy/frontend.Dockerfile
-  #    restart: always
-  #    ports:
-  #      - "3000:3000"
-  #    depends_on:
-  #      - backend
+  frontend:
+    container_name: frontend
+    image: ${HOST_FOR_DOCKER_IMAGE}/neptunessushi_frontend_${ENVIRONMENT}:${VERSION}
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_APP_MAIN_API=${VITE_APP_MAIN_API}
 
   sushi-db:
     container_name: sushi-db
