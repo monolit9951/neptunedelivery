@@ -19,7 +19,7 @@ import com.stripe.net.Webhook;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
+import java.io.IOException;
 import java.math.BigDecimal;
 
 @Service
@@ -36,7 +36,7 @@ public class PaymentServiceImpl implements PaymentService {
         try {
             paymentIntent = PaymentIntent.retrieve(id);
         } catch (StripeException e) {
-            throw new NotFoundPaymentIntentByIdException("Payment intent not found with id = " + id);
+            throw new PaymentIntentNotFoundException("Payment intent not found with id = " + id);
         }
         Order orderDb = getOrderByPaymentIntentId(id);
         String statusPaid = paymentIntent.getStatus();
@@ -99,8 +99,8 @@ public class PaymentServiceImpl implements PaymentService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(rawJson);
             paymentIntentId = jsonNode.get("id").asText();
-        } catch (Exception e) {
-            throw new JsonProcessingFailureException("Can't parse ID/ Unable to parse ID");
+        } catch (IOException e)  {
+            throw new JsonProcessingFailureException("Can't parse ID");
         }
         return paymentIntentId;
     }
